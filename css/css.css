@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #d3dce6;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 150px;
+}
+
+.menu a {
+    margin-right: 15px;
+    text-decoration: none;
+    color: #333;
+}
+
+.login-btn {
+    background-color: #567bda;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.search-bar {
+    background-color: #e3e7ee;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-bar input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+}
+
+.services-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 15px;
+    padding: 20px;
+}
+
+.service-card {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.service-card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.service-card h3 {
+    margin: 10px 0;
+}
+
+.service-card p {
+    margin: 5px 0;
+}
+
+.rating {
+    margin-top: 10px;
+    color: #ffd700;
+}
+
+footer {
+    background-color: #d3dce6;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+    width: 100%;
+}
+
+

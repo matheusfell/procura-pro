@@ -1,0 +1,85 @@
+/* Estilos Gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f2f5;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #567bda;
+    padding: 15px;
+    color: #fff;
+}
+
+header .logo img {
+    height: 40px;
+}
+
+header .menu a {
+    margin-right: 20px;
+    color: #fff;
+    text-decoration: none;
+}
+
+header .menu .login-btn {
+    padding: 8px 16px;
+    background-color: #fff;
+    color: #567bda;
+    border: none;
+    cursor: pointer;
+}
+
+.search-bar {
+    padding: 20px;
+    background-color: #e3e7ee;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-bar input, .search-bar button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+    background-color: #567bda;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+/* Estilos da página de adicionar serviço */
+.add-service {
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-service input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-service button {
+    padding: 10px;
+    background-color: #567bda;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
