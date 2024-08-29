@@ -9,11 +9,11 @@
 <body>
     <header>
         <div class="logo">
-            <a href="index.html"><img src="logo.png" alt="Procura Pro"></a>
+            <a href="index.html"><img src="img/logo.png" alt="Procura Pro"></a>
         </div>
         <div class="menu">
             <a href="index.html">Início</a>
-            <a href="#">Criar conta</a>
+            <a href="#">criar conta</a>
             <button class="login-btn">entrar</button>
         </div>
     </header>
@@ -25,9 +25,11 @@
         <input type="number" id="new-service-ano" placeholder="Ano de cadastro" value="2024">
         <input type="number" id="new-service-valor" placeholder="Valor médio">
         <input type="number" id="new-service-avaliacao" placeholder="Avaliação (1 a 5)" step="0.1" value="5.0">
-        <input type="text" id="new-service-img" placeholder="URL da Imagem">
+        <input type="file" id="new-service-img" accept="image/*">
         <button onclick="adicionarServico()">Adicionar Serviço</button>
     </section>
+
+    <section id="services" class="services-container"></section>
 
     <script src="script/script.js"></script>
 </body>
