@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", function() {
     const servicesData = JSON.parse(localStorage.getItem('servicesData')) || [];
+    const isPrestarServicoPage = window.location.pathname.includes('prestar_servico.html');
 
     // Função para renderizar os serviços
     function renderServices() {
         const servicesContainer = document.getElementById('services');
         if (servicesContainer) {
             servicesContainer.innerHTML = ''; // Limpar o container antes de renderizar
-            servicesData.forEach(service => {
+            servicesData.forEach((service, index) => {
                 const serviceCard = document.createElement('div');
                 serviceCard.classList.add('service-card');
 
@@ -18,6 +19,24 @@ document.addEventListener("DOMContentLoaded", function() {
                     <p>R$ ${service.valor.toFixed(2)} em média</p>
                     <div class="rating">★ ${service.avaliacao.toFixed(1)}</div>
                 `;
+
+                // Se estiver na página de prestar_servico.html, adiciona os botões de editar e excluir
+                if (isPrestarServicoPage) {
+                    const editButton = document.createElement('button');
+                    editButton.textContent = "Editar";
+                    editButton.onclick = function() {
+                        abrirModal(service, index);
+                    };
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = "Excluir";
+                    deleteButton.onclick = function() {
+                        excluirServico(index);
+                    };
+
+                    serviceCard.appendChild(editButton);
+                    serviceCard.appendChild(deleteButton);
+                }
 
                 servicesContainer.appendChild(serviceCard);
             });
@@ -31,33 +50,66 @@ document.addEventListener("DOMContentLoaded", function() {
         const ano = parseInt(document.getElementById('new-service-ano').value);
         const valor = parseFloat(document.getElementById('new-service-valor').value);
         const avaliacao = parseFloat(document.getElementById('new-service-avaliacao').value);
-        const img = document.getElementById('new-service-img').value;
+        const imgInput = document.getElementById('new-service-img').files[0];
 
         // Validar entrada
-        if (!funcao || !nome || !img || isNaN(ano) || isNaN(valor) || isNaN(avaliacao)) {
+        if (!funcao || !nome || !imgInput || isNaN(ano) || isNaN(valor) || isNaN(avaliacao)) {
             alert('Por favor, preencha todos os campos corretamente.');
             return;
         }
 
-        const novoServico = { funcao, nome, ano, valor, avaliacao, img };
-        servicesData.push(novoServico);
+        // Converter a imagem em base64 para armazenar no localStorage
+        const reader = new FileReader();
+        reader.onloadend = function() {
+            const imgBase64 = reader.result;
 
-        // Salvar no localStorage
-        localStorage.setItem('servicesData', JSON.stringify(servicesData));
+            const novoServico = { funcao, nome, ano, valor, avaliacao, img: imgBase64 };
+            servicesData.push(novoServico);
 
-        // Redirecionar para a página inicial após adicionar o serviço
-        window.location.href = 'index.html';
-    }
+            // Salvar no localStorage
+            localStorage.setItem('servicesData', JSON.stringify(servicesData));
+
+            // Redirecionar para a página inicial após adicionar o serviço
+            window.location.href = 'index.html';
+        };
+        reader.readAsDataURL(imgInput); // Lê o arquivo da imagem como base64
+    };
+
+    // Função para excluir um serviço
+    window.excluirServico = function(index) {
+        if (confirm('Tem certeza que deseja excluir este serviço?')) {
+            servicesData.splice(index, 1);
+            localStorage.setItem('servicesData', JSON.stringify(servicesData));
+            renderServices();
+        }
+    };
+
+    // Função para abrir o modal de edição
+    window.abrirModal = function(service, index) {
+        const modal = document.getElementById('editModal');
+        document.getElementById('edit-service-funcao').value = service.funcao;
+        document.getElementById('edit-service-nome').value = service.nome;
+        document.getElementById('edit-service-ano').value = service.ano;
+        document.getElementById('edit-service-valor').value = service.valor;
+        document.getElementById('edit-service-avaliacao').value = service.avaliacao;
+
+        modal.style.display = 'block';
+
+        document.getElementById('saveEditButton').onclick = function() {
+            // Atualizar os valores do serviço
+            servicesData[index].funcao = document.getElementById('edit-service-funcao').value;
+            servicesData[index].nome = document.getElementById('edit-service-nome').value;
+            servicesData[index].ano = parseInt(document.getElementById('edit-service-ano').value);
+            servicesData[index].valor = parseFloat(document.getElementById('edit-service-valor').value);
+            servicesData[index].avaliacao = parseFloat(document.getElementById('edit-service-avaliacao').value);
+
+            // Atualizar no localStorage
+            localStorage.setItem('servicesData', JSON.stringify(servicesData));
+            renderServices();
+            modal.style.display = 'none';
+        };
+    };
 
     // Chamar a função para renderizar os serviços ao carregar a página inicial
     renderServices();
 });
-
-function search() {
-    let city = document.getElementById('city').value;
-    let service = document.getElementById('service').value;
-    let date = document.getElementById('date').value;
-    
-    // Lógica de busca pode ser adicionada aqui
-    alert(`Cidade: ${city}, Serviço: ${service}, Data: ${date}`);
-}
