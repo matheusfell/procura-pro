@@ -84,7 +84,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // Função para abrir o modal de edição
     window.abrirModal = function(service, index) {
         const modal = document.getElementById('editModal');
         document.getElementById('edit-service-funcao').value = service.funcao;
@@ -92,9 +91,20 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('edit-service-ano').value = service.ano;
         document.getElementById('edit-service-valor').value = service.valor;
         document.getElementById('edit-service-avaliacao').value = service.avaliacao;
-
+    
+        // Carregar a imagem existente no modal (para exibir visualmente)
+        const imagePreview = document.createElement('img');
+        imagePreview.src = service.img;
+        imagePreview.style.width = '100px'; // Ajuste o tamanho da visualização conforme necessário
+        imagePreview.alt = 'Imagem do Serviço';
+        document.querySelector('#editModal .modal-content').insertBefore(imagePreview, document.getElementById('edit-service-image'));
+    
         modal.style.display = 'block';
-
+    
+        document.querySelector('#editModal .close').onclick = function() {
+            modal.style.display = 'none';
+        };
+    
         document.getElementById('saveEditButton').onclick = function() {
             // Atualizar os valores do serviço
             servicesData[index].funcao = document.getElementById('edit-service-funcao').value;
@@ -102,13 +112,28 @@ document.addEventListener("DOMContentLoaded", function() {
             servicesData[index].ano = parseInt(document.getElementById('edit-service-ano').value);
             servicesData[index].valor = parseFloat(document.getElementById('edit-service-valor').value);
             servicesData[index].avaliacao = parseFloat(document.getElementById('edit-service-avaliacao').value);
-
-            // Atualizar no localStorage
-            localStorage.setItem('servicesData', JSON.stringify(servicesData));
-            renderServices();
-            modal.style.display = 'none';
+    
+            // Atualizar a imagem se uma nova imagem for selecionada
+            const imageInput = document.getElementById('edit-service-image').files[0];
+            if (imageInput) {
+                const reader = new FileReader();
+                reader.onloadend = function() {
+                    servicesData[index].img = reader.result;
+                    // Atualizar no localStorage
+                    localStorage.setItem('servicesData', JSON.stringify(servicesData));
+                    renderServices();
+                    modal.style.display = 'none';
+                };
+                reader.readAsDataURL(imageInput); // Lê o arquivo da imagem como base64
+            } else {
+                // Atualizar no localStorage mesmo que a imagem não seja alterada
+                localStorage.setItem('servicesData', JSON.stringify(servicesData));
+                renderServices();
+                modal.style.display = 'none';
+            }
         };
     };
+    
 
     // Chamar a função para renderizar os serviços ao carregar a página inicial
     renderServices();
