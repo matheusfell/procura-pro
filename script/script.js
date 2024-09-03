@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('edit-service-avaliacao').value = service.avaliacao;
     
         // Carregar a imagem existente no modal (para exibir visualmente)
-        const imagePreview = document.createElement('img');
+        const imagePreview = document.getElementById('previewImageTest');
         imagePreview.src = service.img;
         imagePreview.style.width = '100px'; // Ajuste o tamanho da visualização conforme necessário
         imagePreview.alt = 'Imagem do Serviço';
