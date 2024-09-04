@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro/Login - Procura Pro</title>
     <link rel="stylesheet" href="css/cadastro.css">
 </head>
+
 <body>
     <div class="container">
-        <h2>Bem-vindo ao Procura Pro</h2>
+        <div class="welcome-header">
+            <h2>Bem-vindo ao Procura Pro</h2>
+            <button class="go-to-index" onclick="window.location.href='index.html'">Ir para o Início</button>
+        </div>
         <form action="#" method="POST">
             <input type="email" placeholder="Email" required>
             <input type="password" placeholder="Senha" required>
@@ -22,13 +27,15 @@
         </div>
 
         <div class="google-btn">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_"G"_Logo.svg/512px-Google_"G"_Logo.svg.png" alt="Google Logo">
+            <img src="img/icon_google.svg" alt="Google Logo">
             Continuar com o Google
         </div>
 
         <div class="terms">
-            <input type="checkbox" required> Li e concordo com os <a href="#">Termos de Uso</a> e as <a href="#">Políticas de Privacidade</a> da plataforma Procura Pro. <a href="#">Saiba Mais</a>
+            <input type="checkbox" required> Li e concordo com os <a href="#">Termos de Uso</a> e as <a
+                href="#">Políticas de Privacidade</a> da plataforma Procura Pro. <a href="#">Saiba Mais</a>
         </div>
     </div>
 </body>
+
 </html>

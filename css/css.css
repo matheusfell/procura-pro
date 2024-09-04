@@ -8,9 +8,6 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
 }
 
 header {
@@ -19,6 +16,12 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+#login {
+    padding: 10px 20px;
+    background-color: #567bda;
+    border-radius: 6px;
 }
 
 .logo img {
