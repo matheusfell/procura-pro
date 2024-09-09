@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil - Procura Pro</title>
+    <link rel="stylesheet" href="css/perfil.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+           <img src="img/logo.png" alt="Procura Pro">
+        </div>
+        <div class="menu">
+            <a href="index.html">Início</a>
+            <a href="#">criar conta</a>
+            <button class="login-btn">entrar</button>
+        </div>
+    </header>
+
+    <section class="edit-profile">
+        <h2>Editar Perfil</h2>
+        <input type="text" id="edit-profile-nome" placeholder="Editar Nome">
+        <input type="file" id="edit-profile-foto" accept="image/*">
+        <button onclick="salvarPerfil()">Salvar Alterações</button>
+        <button onclick="excluirConta()">Excluir Conta</button>
+    </section>
+
+    <section class="minhas-atividades">
+        <h2>Minhas Atividades</h2>
+        <button onclick="verMinhasContratacoes()">Minhas Contratações</button>
+        <button onclick="verMinhasPrestacoes()">Minhas Prestações</button>
+    </section>
+
+    <script src="script/perfil.js"></script>
+
+</body>
+</html>

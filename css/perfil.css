@@ -1,0 +1,110 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Estilos do cabeçalho */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 10px 20px;
+    color: white;
+}
+
+header .logo img {
+    height: 40px;
+}
+
+header .menu a,
+header .menu button {
+    margin-left: 15px;
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+header .menu button {
+    padding: 5px 10px;
+    background-color: #0056b3;
+    border-radius: 5px;
+}
+
+header .menu button:hover {
+    background-color: #004494;
+}
+
+/* Estilos da seção de edição de perfil */
+.edit-profile {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-profile h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.edit-profile input[type="text"],
+.edit-profile input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.edit-profile button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-profile button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos da seção de atividades */
+.minhas-atividades {
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.minhas-atividades h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.minhas-atividades button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.minhas-atividades button:hover {
+    background-color: #0056b3;
+}
