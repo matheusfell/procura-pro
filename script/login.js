@@ -20,9 +20,8 @@ async function login() {
         const result = await response.json();
 
         if (result.status === 'success') {
-            message.textContent = 'Login bem-sucedido!';
-            message.style.color = 'green';
-            window.location.href = 'dashboard.html'; // Redirecione para a página desejada após o login
+            alert('Login bem-sucedido!');
+            window.location.href = 'index.html'; // Redirecione para a página desejada após o login
         } else {
             message.textContent = result.message;
             message.style.color = 'red';
