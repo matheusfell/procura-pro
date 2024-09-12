@@ -1,18 +1,27 @@
-function enviarDados() {
+async function enviarDados(event) {
+    event.preventDefault();  // Prevenir o comportamento padrão do formulário
+
     var form = document.getElementById('formCadastro');
     var formData = new FormData(form);
 
-    fetch('http://localhost/meu_projeto/cadastrar_usuario.php', { // Ajuste o caminho conforme necessário
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.text())
-    .then(data => {
-        alert('Dados cadastrados com sucesso!');
-        console.log(data);
-    })
-    .catch(error => {
-        console.error('Erro ao cadastrar:', error);
+    // Converter os dados do FormData em um objeto JSON
+    const formObj = {};
+    formData.forEach((value, key) => {
+        formObj[key] = value;
     });
+
+    // Enviar os dados como JSON via fetch()
+    const response = await fetch('http://localhost:8000/ws/registrar', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formObj),
+    });
+
+    const result = await response.json();
+    console.log('Resposta do servidor:', result);
 }
 
+// Adicionar o evento no form diretamente
+document.getElementById("formCadastro").addEventListener("submit", enviarDados);
