@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prestar Serviço - Procura Pro</title>
-    <link rel="stylesheet" href="css/css_prestar.css">
+    <link rel="stylesheet" href="css/css_prestar.css" media="screen">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <header>
@@ -27,9 +31,12 @@
         <input type="number" id="new-service-valor" placeholder="Valor médio">
         <input type="number" id="new-service-avaliacao" placeholder="Avaliação (1 a 5)" step="0.1" value="5.0">
         <input type="file" id="new-service-img" accept="image/*">
+        
+        
         <button onclick="adicionarServico()">Adicionar Serviço</button>
     </section>
-
+    <section class="meuservico" >Meus serviços</section>
+   
     <section id="services" class="services-container"></section>
 <!-- Modal de Edição -->
 <div id="editModal" class="modal">

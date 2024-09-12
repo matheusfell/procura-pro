@@ -1,11 +1,16 @@
 /* Estilos Gerais */
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    line-height: 1.6;
+    font-size: 16px;
     margin: 0;
     padding: 0;
-    background-color: #f0f2f5;
+    font-weight: 700; /* Definindo o texto como negrito */
 }
 
+/* Cabeçalho */
 header {
     display: flex;
     justify-content: space-between;
@@ -13,16 +18,22 @@ header {
     background-color: #567bda;
     padding: 15px;
     color: #fff;
+    flex-wrap: wrap; /* Permite que o header se ajuste em telas menores */
 }
 
 header .logo img {
     height: 40px;
 }
 
+header .menu {
+    display: flex;
+    gap: 20px;
+}
+
 header .menu a {
-    margin-right: 20px;
     color: #fff;
     text-decoration: none;
+    font-size: 16px;
 }
 
 header .menu .login-btn {
@@ -31,8 +42,11 @@ header .menu .login-btn {
     color: #567bda;
     border: none;
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
+/* Barra de Pesquisa */
 .search-bar {
     padding: 20px;
     background-color: #e3e7ee;
@@ -45,8 +59,10 @@ header .menu .login-btn {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
+/* Rodapé */
 footer {
     text-align: center;
     padding: 15px;
@@ -57,14 +73,14 @@ footer {
     bottom: 0;
 }
 
-/* Estilos da página de adicionar serviço */
+/* Adicionar Serviço */
 .add-service {
     padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 15px;
     max-width: 500px;
-    margin: 0 auto;
+    margin: 20px auto; /* Centraliza o contêiner horizontalmente */
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -74,6 +90,7 @@ footer {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 .add-service button {
@@ -82,66 +99,11 @@ footer {
     color: #fff;
     border: none;
     cursor: pointer;
-}
-
-
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
-}
-
-header .logo img {
-    height: 50px;
-}
-
-header .menu {
-    display: flex;
-    gap: 15px;
-}
-
-header .menu a,
-header .menu button {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.add-service {
-    padding: 20px;
-    background-color: #f1f1f1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 20px;
-}
-
-.add-service input, .add-service button {
-    padding: 10px;
-    font-size: 16px;
-}
-
-.add-service button {
-    cursor: pointer;
-    background-color: #28a745;
-    color: white;
-    border: none;
     border-radius: 5px;
+    font-size: 16px;
 }
 
+/* Contêiner de Serviços */
 .services-container {
     display: flex;
     flex-wrap: wrap;
@@ -150,6 +112,7 @@ header .menu button {
     justify-content: center;
 }
 
+/* Cartão de Serviço */
 .service-card {
     width: 300px;
     background-color: #ffffff;
@@ -185,11 +148,11 @@ header .menu button {
 .service-card button {
     margin: 10px 5px;
     padding: 8px 12px;
-    background-color: #007bff;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    color: white;
+    font-size: 16px;
 }
 
 .service-card button:first-of-type {
@@ -199,7 +162,8 @@ header .menu button {
 .service-card button:last-of-type {
     background-color: #dc3545; /* Botão de excluir */
 }
-/* Estilização do modal */
+
+/* Estilização do Modal */
 .modal {
     display: none;
     position: fixed;
@@ -258,3 +222,86 @@ header .menu button {
 .modal button:hover {
     background-color: #45a049;
 }
+
+/* Botão de Arquivo Moderno com ícone + */
+#new-service-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 2px dashed #567bda;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    color: #567bda;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#new-service-img:hover {
+    background-color: #e3e7ee;
+    border-color: #345a9a;
+}
+
+/* #new-service-img {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+} */
+
+#new-service-img::before {
+    content: "+";
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.file-upload span {
+    font-size: 16px;
+}
+.meuservico {
+    text-align: center; /* Centraliza o texto horizontalmente */
+    padding: 20px; /* Adiciona espaçamento ao redor do texto */
+    font-size: 24px; /* Ajusta o tamanho da fonte */
+    color: #333; /* Define a cor do texto */
+    background-color: #f0f0f0; /* Opcional: adiciona um fundo para destacar a seção */
+    border-radius: 8px; /* Opcional: arredonda os cantos */
+    margin: 20px auto; /* Adiciona margem automática para centralizar a seção horizontalmente */
+    max-width: 800px; /* Opcional: define uma largura máxima para a seção */
+}
+
+/* 
+/* Botão de Arquivo Moderno com ícone + */
+/* .file-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border: 2px dashed #567bda;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    color: #567bda;
+   
+}
+
+.file-upload:hover {
+    background-color: #e3e7ee;
+    border-color: #345a9a;
+}
+
+.file-upload input[type="file"] {
+    display: none;
+}
+
+.file-upload::before {
+    content: "+";
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.file-upload span {
+    font-size: 16px;
+}  */
+
+
