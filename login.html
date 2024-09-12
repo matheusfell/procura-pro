@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro/Login - Procura Pro</title>
     <link rel="stylesheet" href="css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
-
 <body>
     <div class="container">
         <div class="welcome-header">
             <h2>Bem-vindo ao Procura Pro</h2>
             <button class="go-to-index" onclick="window.location.href='index.html'">Ir para o Início</button>
         </div>
-        <form action="#" method="POST">
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Senha" required>
-            <button type="submit">Entrar</button>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required>
+            <input type="password" id="senha" placeholder="Senha" required>
+            <button id="botao-login" type="button" onclick="login()">Logar</button>
         </form>
 
         <div class="divider">
@@ -34,10 +31,9 @@
         </div>
 
         <div class="terms">
-            <input type="checkbox" required> Li e concordo com os <a href="#">Termos de Uso</a> e as <a
-                href="#">Políticas de Privacidade</a> da plataforma Procura Pro. <a href="#">Saiba Mais</a>
+            <input type="checkbox" required> Li e concordo com os <a href="#">Termos de Uso</a> e as <a href="#">Políticas de Privacidade</a> da plataforma Procura Pro. <a href="#">Saiba Mais</a>
         </div>
     </div>
+    <script src="script/login.js"></script>
 </body>
-
 </html>
