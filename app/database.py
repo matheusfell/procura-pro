@@ -1,17 +1,9 @@
 import psycopg2
 from psycopg2 import pool
-import os
-from dotenv import load_dotenv
-
-# Carregar variáveis de ambiente do arquivo .env
-load_dotenv()
-
-# Configurar o pool de conexão ao PostgreSQL
-DATABASE_URL = os.getenv("DATABASE_URL")
 
 # Criar o pool de conexões
 try:
-    connection_pool = psycopg2.pool.SimpleConnectionPool(1, 20, DATABASE_URL)
+    connection_pool = psycopg2.pool.SimpleConnectionPool(1, 20, "postgresql://diego:135790@localhost:5432/procurapro")
     print("Conexão com o PostgreSQL criada com sucesso")
 except (Exception, psycopg2.DatabaseError) as error:
     print("Erro ao conectar ao PostgreSQL", error)
