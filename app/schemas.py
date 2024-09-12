@@ -16,5 +16,5 @@ class UsuarioLogin(BaseModel):
 
 class UsuarioLogado(BaseModel):
     email: EmailStr
-    usuarioID: int
+    usuario_id: int
 

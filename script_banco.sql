@@ -8,11 +8,11 @@ CREATE TABLE cidade (
 CREATE TABLE usuario (
     usuario_id SERIAL PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
-    senha VARCHAR(50) NOT NULL,
+    senha VARCHAR(100) NOT NULL,
     idade INT,
     email VARCHAR(100) NOT NULL,
     cpf VARCHAR(11) UNIQUE NOT NULL,
-    cidade_id INT REFERENCES cidade(cidade_id),
+    cidade_id INT,
     rua VARCHAR(100),
     complemento VARCHAR(100),
     dt_cadastro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
