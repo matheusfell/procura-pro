@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Procura Pro</title>
     <link rel="stylesheet" href="css/css.css">
 </head>
+
 <body>
     <header>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
         <div class="logo">
             <img src="img/logo.png" alt="Procura Pro">
         </div>
@@ -19,24 +26,26 @@
             <a id="login" href="login.html">entrar</a>
         </div>
     </header>
-    
+
     <section class="search-bar">
-        <input type="text" placeholder="Buscar cidade" id="city">
-        <input type="text" placeholder="Tipo de Serviço" id="service">
-        <input type="date" id="date">
-        <button onclick="search()">🔍 Buscar</button>
+        <div class="pesquisa_servico">
+            <input type="text" placeholder="Buscar cidade" id="city">
+            <input type="text" placeholder="Tipo de Serviço" id="service">
+            <button onclick="search()">Buscar</button>
+        </div>
     </section>
-    
+
     <section class="services-container">
         <div class="services" id="services">
             <!-- Os cards de serviços serão inseridos dinamicamente aqui -->
         </div>
     </section>
-    
+
     <footer>
         <p>&copy; 2024 Procura Pro - Todos os direitos reservados</p>
     </footer>
 
     <script src="script/script.js"></script>
 </body>
+
 </html>
