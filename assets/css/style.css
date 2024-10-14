@@ -1,0 +1,927 @@
+*{
+    margin: 0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+
+}
+
+:root{
+    --cor-padrao-fonte:#ffffff;
+    --cor-link-topo:#fff;
+    --cor-font-preto: #000;
+    --cor-botao-pesquisa-top:#103d72;
+    --cor-hover-btn:#103d72;
+    --cor-fonte-sub-titulo:#333;
+    --cor-hover-ganhar-dinheiro: #1a77e2;
+    --cor-topo-celular:#00132c;
+    --borda-busca-radape-celular:#103d72;
+    --cor-info-servico:#103d72;
+    --borda-lateral-direita:#103d72;
+
+}
+
+.destaque{
+    width: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3),rgba(0, 0, 0, 0.3)),url('../img/BANNERPROCURA.png');
+    background-size: cover;
+    background-position: center;
+
+}
+
+nav{
+    display: flex;
+    margin-left:1px;
+    align-items: center;
+    padding: 20px 7%;
+    
+}
+
+nav .menu-outline{
+    display: none;
+}
+
+.logo{
+    width: 140px;
+    cursor: pointer;
+}
+
+.nav-links li{
+    list-style: none;
+    display: inline-block;
+    margin:10px 30px;
+}
+
+.nav-links li a{
+    text-decoration: none;
+    color: var(--cor-link-topo);
+}
+
+
+.active{
+    position: relative;
+}
+
+.active::after{
+
+    content: '';
+    background-color: var(--cor-link-topo);
+    width: 25px;
+    height: 2px;
+    position:absolute;
+    left:50%;
+    transform: translateX(-50%);
+    bottom: -12px;
+    border-radius:2px;
+
+}
+
+.cadastro-btn{
+    background: var(--cor-link-topo);
+    color:var(--cor-font-preto);
+    padding:8px 020px;
+    border-radius:20px;
+    text-decoration:none;
+    font-size:15px;
+    
+}
+
+.cadastro-btn:hover{
+    background-color: var(--cor-botao-pesquisa-top);
+    color:var(--cor-link-topo);
+}
+
+.container{
+    padding: 0 7%;
+}
+
+.destaque h1{
+    font-size: 4vw;
+    font-weight: 500;
+    color:var(--cor-padrao-fonte);
+    text-align: center;
+    padding-top:22%;
+}
+
+.busca-site{
+    background-color: var(--cor-padrao-fonte);
+    width: 70%;
+    margin:30px auto;
+    padding: 6px 10px 6px 30px;
+    border-radius: 50px;
+}
+
+
+.local-input{
+    flex:1;
+}
+
+.busca-site form label{
+    font-weight: 600;
+}
+
+.busca-site form{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.busca-site form input{
+    display: block;
+    border:none;
+    background-color: transparent;
+    outline: none;
+}
+
+.busca-site form button{
+  background-color: var(--cor-botao-pesquisa-top);
+  width: 55px;
+  height: 55px;
+  border-radius:50%;
+  outline: none;
+  cursor: pointer;
+  border:none;
+}
+
+.busca-site form button img{
+    width: 15px;
+    margin-top: 5px;
+}
+
+.sub-titulo{
+  margin: 50px 0 20px;
+  font-size: 2.2vw;
+  font-weight: 500;
+  color: var(--cor-fonte-sub-titulo);
+}
+
+.exclusivos{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap:30px;
+}
+
+.exclusivos div img{
+    width: 100%;
+    border-radius: 10px;
+   
+}
+
+.exclusivos div{
+  position: relative;
+  
+}
+
+.exclusivos div span{
+    position: absolute;
+    top:50%;
+    left:43%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color:var(--cor-padrao-fonte);
+}
+
+.lacais-quentes{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap:30px;
+    margin-bottom: 30px;
+}
+
+
+.lacais-quentes div img{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.lacais-quentes h3{
+    font-weight: 600;
+    margin-top:10px;
+}
+
+.cta{
+    margin: 80px 0;
+    background-image: linear-gradient(to right, #577ebc, transparent),url('../img/bannermais\ \(1\).png');
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    padding:5%;
+    color:var(--cor-padrao-fonte);
+
+}
+
+
+.cta h3{
+    font-size: 4vw;
+    font-weight: 500;
+    line-height: 5.3vw;
+}
+
+.cta p{
+    font-size: 18px;
+    margin:10px 0;
+
+}
+
+.cta-btn{
+    display: inline-block;
+    background-color: var(--cor-botao-pesquisa-top);
+    color:var(--cor-link-topo);
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    margin-top:20px;
+}
+
+.cta-btn:hover{
+    background-color: var(--cor-hover-ganhar-dinheiro);
+}
+
+.stories{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap:30px;
+    margin-bottom: 30px;
+}
+
+.stories div img{
+    width: 100%;
+    border-radius: 10px;
+
+}
+
+.stories div{
+    position: relative;
+    text-align: center;
+}
+
+.stories p{
+    width: 80%;
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    color:var(--cor-padrao-fonte);
+    font-size:26px;
+
+}
+
+.ganhar-btn{
+    display: block;
+    width: 80%;
+    max-width: 350px;
+    background-color: var(--cor-botao-pesquisa-top);
+    color:var(--cor-padrao-fonte);
+    text-decoration: none;
+    text-align: center;
+    margin: 60px auto;
+    padding:15px;
+    border-radius:30px;
+    font-size:20px; 
+    
+}
+
+.ganhar-btn:hover{
+    background-color: var(--cor-hover-ganhar-dinheiro);
+}
+
+.sobre-nos{
+    text-align: center;
+    margin: 80px 0;
+    color:var(--cor-font-preto);
+    font-size:17px;
+}
+
+
+.sobre-nos h2{
+    font-size:28px;
+    margin-bottom:30px;
+    font-weight: 500;
+}
+
+.rodape{
+    margin:80px 0 10px;
+    text-align: center;
+}
+
+.rodape a{
+    text-decoration: none;
+    color:var(--cor-botao-pesquisa-top);
+    font-size: 22px;
+    margin: 0 10px;
+
+}
+
+.rodape hr{
+  background-color: var(--cor-botao-pesquisa-top);
+  height: 1px;
+  width: 100%;
+  border: 0;
+  margin: 20px 0;
+}
+
+.rodape p{
+    padding-bottom:15px;
+}
+
+/*-------------- LISTAGEM DE SERVIÇOES----------------------------*/
+.nav-procurapro{
+    background-color: var(--);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+.nav-procurapro .nav-links li a{
+    color:var(--borda-busca-radape-celular)
+
+}
+
+.lista-servico{
+    display: flex;
+    flex-wrap:wrap ;
+    margin-top:50px ;
+    justify-content: space-between;
+}
+.coluna-esquerda{
+    flex-basis: 70%;
+}
+
+.coluna-direita{
+    flex-basis: 25%;
+}
+
+.coluna-esquerda h1{
+    color:var(--cor-hover-btn);
+    font-weight: 600;
+    margin-bottom: 1px;
+}
+.servicos{
+    display: flex;
+    flex-wrap:wrap ;
+    justify-content: space-between;
+    padding: 30px 0;
+    border-top: 1px solid var(--cor-topo-celular)
+}
+.servico-img{
+   flex-basis: 40%;
+}
+.servico-info{
+    flex-basis: 50%;
+    color:var(--cor-fonte-sub-titulo)
+}
+.servico-img img{
+    width: 100%;
+    object-fit: cover;
+    object-position:center ;
+    border-radius: 12px;
+}
+.servico-info h3{
+    font-size: 22px;
+    font-weight: 600;
+    color: (var(--cor-hover-ganhar-dinheiro));
+}
+.servico-info ion-icon{
+    font-size: 18px;
+    color: var(--cor-hover-ganhar-dinheiro);
+    margin: 10px 1px;
+    
+}
+.servico-valor{
+    text-align: right;
+}
+.servico-valor h3{
+   font-size:20px;
+   padding: 5px 0 5px 0;
+}
+.servico-valor h3 span{
+    font-size:15px;
+    font-weight: 600;
+ }
+ .barra-lateral{
+    border: 1px solid var(--cor-hover-btn);
+    margin-top: 30px;
+    padding: 20px 30px;
+ }
+ .barra-lateral h2{
+    font-weight: 600;
+ }
+
+ .barra-lateral h3{
+    font-weight: 500;
+    margin: 20px 0 10px;
+ }
+ .filtro{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    color:var(--cor-fonte-sub-titulo)
+ }
+ .filtro p{
+    flex: 1;
+ }
+ .filtro input{
+    margin-right: 15px;
+    cursor: pointer;
+ }
+ .filtro select{
+    margin-right: 15px;
+    cursor: pointer;
+    width: 100%;
+    border: 1px solid var(--cor-fonte-sub-titulo);
+    outline: none;
+    padding: 10px;
+    border-radius: 5px;
+ }
+ .barra-lateral button{
+   border:none;
+   cursor: pointer;
+   color: var(--cor-link-topo);
+   background-color: var(--cor-fonte-sub-titulo);
+   border-radius: 4px;
+   width: 95%;
+ }
+ .barra-lateral button:hover{
+    background-color: var(--cor-hover-btn);
+}
+.paginacao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+}
+.paginacao img{
+    width: 15px;
+    margin: 10px 20px;
+    
+}
+.seta-direita{
+    transform: rotate(180deg);
+}
+.paginacao span{
+    margin: 10px 8px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50%;
+    color: var(--cor-link-topo);
+    background-color: var(--cor-hover-ganhar-dinheiro);
+    cursor: pointer;
+}
+
+.paginacao span:hover{
+    background-color: var(--cor-info-servico); 
+ }
+ .paginacao .ativo{
+    background-color: var(--cor-info-servico); 
+ }
+
+ /* ---------------------------------VESAO PARA CELULAR ----------------------------------*/
+ /* Estilos gerais para dispositivos móveis */
+@media only screen and (max-width: 768px) {
+    /* Menu Responsivo */
+    .nav-procurapro .nav-links {
+        display: none; /* Esconder o menu quando em dispositivos móveis */
+    }
+    
+    .nav-procurapro .menu-outline {
+        display: block;
+        font-size: 30px;
+        cursor: pointer;
+    }
+
+    .logo {
+        width: 100px; /* Ajuste do tamanho da logo para mobile */
+    }
+
+    /* Estilos para o corpo da página */
+    .container {
+        padding: 20px;
+    }
+
+    /* Ajustes na lista de serviços */
+    .lista-servico {
+        flex-direction: column; /* Alinha em coluna */
+    }
+
+    .coluna-esquerda, .coluna-direita {
+        flex-basis: 100%; /* Ocupa 100% da largura no celular */
+    }
+    .coluna-esquerda h1 {
+        padding: 2px;
+    }
+    .coluna-esquerda p {
+        padding: 50px;
+        align-items: center;
+    }
+
+
+    .servicos {
+        flex-direction: column; /* Organiza os serviços em coluna no celular */
+    }
+
+    .servico-img, .servico-info {
+        flex-basis: 100%; /* Ajusta o tamanho das imagens e info para 100% */
+        text-align: center; /* Centraliza o conteúdo */
+    }
+
+    .servico-img img {
+        width: 50%; /* Ajusta o tamanho das imagens */
+    }
+
+    .servico-valor {
+        text-align: center;
+    }
+
+    /* Barra lateral */
+    .barra-lateral {
+        margin-top: 20px;
+        padding: 25px;
+    }
+
+    .barra-lateral h2, .barra-lateral h3 {
+        text-align: center;
+    }
+
+    /* Botões */
+    .barra-lateral button {
+        width: 100%;
+        margin-top: 100px;
+    }
+
+    /* Paginação */
+    .paginacao {
+        margin: 20px 0;
+    }
+
+    .paginacao span {
+        margin: 5px;
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
+
+    .paginacao img {
+        width: 12px;
+        margin: 5px;
+    }
+}
+
+/* Estilos para telas muito pequenas, até 480px de largura */
+@media only screen and (max-width: 480px) {
+    .servico-img img {
+        width: 100%; /* Ocupar toda a largura em telas muito pequenas */
+    }
+
+    .barra-lateral {
+        padding: 10px;
+    }
+
+    .filtro p {
+        font-size: 14px; /* Ajusta o tamanho do texto dos filtros */
+    }
+
+    .paginacao span {
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .paginacao img {
+        width: 10px;
+    }
+}
+
+ 
+
+
+/*--------------------------------PARTE MOBILE MSFLIX.COM.BR E MAYKONSILVEIRA.COM.BR-------------------------------------*/
+
+
+@media only screen and (max-width:700px){
+    
+    .logo{
+        position:absolute; 
+        display: flex;
+        top:1%;
+        left:7%;
+    
+    }
+
+    nav{
+        display: inline-block;
+        position:fixed;
+        top:0;
+        z-index:100;
+        width: 100%;
+        padding: 100px 7% 0;
+        background-color: var(--cor-topo-celular);
+        text-align: right;
+        max-height: 100px;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+
+    nav .nav-links li{
+     margin: 10px 0;
+     display: block;
+    }
+
+    .cadastro-btn{
+        margin:15px 0 15px;
+        display: inline-block;
+    }
+
+    nav .menu-outline{
+        display: block;
+        position: fixed;
+        top:4%;
+        right: 7%;
+        color:var(--cor-padrao-fonte);
+        font-size: 28px;
+    }
+
+    .active::after{
+        left:-40px;
+        transform: translate(0, 50%);
+        bottom: 50%;
+    
+    }
+
+    .escondemenu{
+        max-height: 300px;
+    }
+
+    .destaque h1{
+        padding-top:200px;
+        font-size: 7vw;
+    }
+
+    .busca-site{
+        width: 90%;
+        margin: 30px auto;
+        padding: 20px 10px 30px;
+        border-radius: 5px;
+        position: relative;
+    }
+
+    .busca-site form{
+        display: block;
+    }
+
+    .busca-site form input{
+        border-bottom: 1px solid var(--borda-busca-radape-celular);
+        width: 100%;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        padding-bottom:10px;
+
+    }
+
+    .busca-site form  button{
+        position:absolute;
+        bottom:0;
+        left: 50%;
+        transform: translate(-50%,50%);
+
+    }
+
+    .sub-titulo{
+        font-size:6vw;
+    }
+
+    .cta{
+        padding:15% 5%;
+
+    }
+
+    .cta h3{
+      font-size: 7vw;
+      line-height: 8vw;
+    }
+
+    .cta p{
+        font-size: 14px;
+    }
+
+    .cta-btn{
+      padding: 6px; 
+      border-radius: 4px; 
+      margin-top:10px;
+      font-size: 14px;
+    }
+
+    .stories p{
+        font-size: 22px;
+    }
+
+    .sobre-nos{
+        font-size: 15px;
+    }
+
+
+}
+/* ----------------pagina sevico-------------------------- */
+.servico-detalhes{
+    padding: 0 12%;
+}
+
+.servico-titulo{
+    margin-top:50px!important; 
+}
+
+.servico-titulo h1{
+    font-weight: 600;
+    margin-top: 10px;
+}
+.servico-titulo .linha{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin:10px 0;
+}
+.servico-titulo span{
+    margin:0 20px;
+}
+
+.servico-titulo ion-icon{
+    color: var(--cor-botao-pesquisa-top);
+    font-size:14px;
+}
+.galeria{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-areas:'procurapro';
+    margin-bottom: 20px 0;
+    width: 550px;
+}
+.galeria div img{
+    width:100%;
+    display: block;
+    border-radius:20px ;
+    cursor: pointer ;
+}
+.galeria-img1{
+  grid-area: procurapro;
+}
+.pequenos-detalhes h2{
+ font-weight: 500;
+ margin-top: 10px;
+
+}
+.pequenos-detalhes h4{
+    text-align: right;
+    font-size: 22px;
+   
+}
+.linha-hr{
+  width: 100%; 
+  
+  border: 0;
+  height: 1px;
+  background-color: var(--borda-lateral-direita);
+  margin: 20px 0 50px;
+}
+
+.orcamento{
+   display:flex;
+   flex-wrap:wrap ; 
+   align-items: center;
+   margin: 20px 0;
+   border-radius:18px ;
+   background-color: var(--cor-padrao-fonte);
+   box-shadow:0 0 30px rgba(0, 0, 0, 0.3) ;
+   padding: 10px 50px;
+}
+.orcamento label{
+    display: block;
+}
+.orcamento div{
+    padding: 20px;
+}
+.orcamento input{
+    border:0 ;
+    outline:none;
+    background: transparent;
+}
+.orcamento button{
+    width:300px;
+    font-size:16px ;
+    background-color: var(--cor-hover-btn);
+    border: 0;
+    outline:none ;
+    border-radius: 8px;
+    color: var(--cor-padrao-fonte);
+    padding: 18px;
+}
+
+.orcamento button:hover{
+ background-color: #1a77e2;
+
+}
+.campo-pessoas{
+    flex: 1;
+
+}
+.lista-detalhes{
+  list-style: none;  
+  margin: 50px 0;
+}
+.lista-detalhes li{
+    position: relative;
+    margin-left:50px;
+    font-size:20px ;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color:var(--cor-topo-celular);
+
+}
+.lista-detalhes span{
+   font-size: 16px; 
+   font-weight: 400;
+   display: block;
+}
+.lista-detalhes li ion-icon{
+    position: absolute;
+    top:5px;
+    left: -40px;
+}
+.mapa{
+    margin: 50px 0;
+}
+.mapa iframe{
+   width: 100%;
+   margin-bottom: 30px; 
+}
+.mapa h3{
+font-size: 26px;
+font-weight: 500;
+margin-bottom: 30px;
+}
+.mapa b{
+    display: block;
+    font-size: 16px;
+}
+
+.perfil {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+
+.perfil-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%; 
+    margin: 10px;
+    
+}
+
+
+.perfil h2{
+    font-weight: 500;
+    margin-bottom: 5px;
+    padding: 10px;
+}
+
+.perfil p{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    color: var(--cor-texto-secundario);
+}
+
+.perfil ion-icon {
+color: var(--cor-hover-btn);
+padding:5px;
+}
+
+.contato {
+    display: inline-block;
+    object-position: center;
+    text-decoration: none;
+    background-color: var(--borda-busca-radape-celular);
+    color: var(--cor-padrao-fonte);
+    margin: 40px 0 40px 120px;
+    padding: 15px 50px;
+    border-radius: 8px;
+    border: 1px solid var(--cor-link-topo);
+    transition: background-color 0.3s ease;
+}
+
+.contato:hover {
+    background-color: var(--cor-hover-ganhar-dinheiro);
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+    .perfil {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .contato {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}

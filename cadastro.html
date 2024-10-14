@@ -5,43 +5,106 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro/Login - Procura Pro</title>
-    <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet" href="assets/css/cadastro.css">
+    <style>
+     
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="welcome-header">
-            <h2>Bem-vindo ao Procura Pro</h2>
+            <h2>Cadastre-se agora no Procura Pro</h2>
             <button class="go-to-index" onclick="window.location.href='index.html'">Ir para o Início</button>
         </div>
-        <form id="formCadastro" method="POST">
-            <input type="text" id="nome" name="nome" placeholder="Nome" required>
-            <input type="email" id="email" name="email" placeholder="Email" required>
-            <input type="password" id="senha" name="senha" placeholder="Senha" required>
-            <input type="text" id="idade" name="idade" placeholder="Idade" required>
-            <input type="text" id="cpf" name="cpf" placeholder="Cpf" required>
-            <input type="text" id="cidade_id" name="cidade_id" placeholder="Cep" required>
-            <input type="text" id="rua" name="rua" placeholder="Rua" required>
-            <input type="text" id="complemento" name="complemento" placeholder="Complemento" required>
+            <form action="#" method="POST" id="formCadastro">
+                <input type="text" name="nome" id="nome" placeholder="Nome" required>
+                <input type="email" id ="email" placeholder="Email" required>
+                <input type="password" id="senha" placeholder="Senha" required>
+                <input type="text" id="telefone" placeholder="Telefone" required>
+                <input type="text" id="cpf" placeholder="CPF" required>
+                <input type="text" id="cep" placeholder="CEP" required>
+                <input type="text" id="cidade" placeholder="Cidade" required disabled>
+                <input type="text" id="estado" placeholder="Estado" required disabled>
+                <input type="text" id="rua" placeholder="Rua" required disabled>
+                <input type="text" id="numero" placeholder="Numero" required>
+                <button type="submit">Continuar</button>
+            </form>
         
-            <button id="botao-continuar" type="submit" onclick="enviarDados()">Cadastrar</button>
-        </form>
-        
-        <div class="divider">
-            <span>ou</span>
-        </div>
-
-        <div class="google-btn">
-            <img src="img/icon_google.svg" alt="Google Logo">
-            Continuar com o Google
-        </div>
 
         <div class="terms">
-            <input type="checkbox" required> Li e concordo com os <a href="#">Termos de Uso</a> e as <a
-                href="#">Políticas de Privacidade</a> da plataforma Procura Pro. <a href="#">Saiba Mais</a>
+            <input type="checkbox" required> Li e concordo com os <a id="terms-link">Termos de Uso</a> e as <a id="privacy-link">Políticas de Privacidade</a> da plataforma Procura Pro.
         </div>
     </div>
-    <script src="script/cadastro.js"></script>
+
+    <!-- Modal para os Termos de Uso -->
+    <div id="terms-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-terms">&times;</span>
+            <h2>Termos de Uso</h2>
+            <p>Ao utilizar a plataforma Procura Pro, você concorda com estes Termos de Uso. A plataforma conecta clientes e profissionais, atuando apenas como intermediária e não se responsabiliza pela execução dos serviços. O usuário deve garantir a veracidade das informações fornecidas durante o cadastro, pois o Procura Pro não se responsabiliza por dados incorretos. A plataforma não é responsável por fraudes, má execução de serviços ou danos decorrentes das interações entre usuários. Além disso, o Procura Pro não oferece assessoria jurídica, e as questões legais devem ser resolvidas diretamente entre as partes. Os usuários devem utilizar a plataforma de maneira ética e legal. O Procura Pro pode alterar os termos a qualquer momento, e o uso continuado implica aceitação das novas condições. Este Termo é regido pelas leis brasileiras, e disputas serão resolvidas no foro da Comarca</p>
+        </div>
+    </div>
+
+    <!-- Modal para as Políticas de Privacidade -->
+    <div id="privacy-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="close-privacy">&times;</span>
+            <h2>Políticas de Privacidade</h2>
+            <p>Política de Uso - Procura Pro
+                Nós, do Procura Pro, tratamos os dados pessoais de acordo com a Lei Geral de Proteção de Dados (LGPD). Coletamos informações como nome, e-mail, CPF e endereço para fins de cadastro, operação da plataforma e comunicação. Seus dados serão utilizados exclusivamente para os serviços contratados e não serão compartilhados com terceiros, exceto conforme exigido por lei. Você pode solicitar acesso, correção ou exclusão de seus dados a qualquer momento. Para mais detalhes, consulte nossa Política de Privacidade ou entre em contato pelo suporte.</p>
+        </div>
+    </div>
+
+    <script>
+        // Função para abrir o modal
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+
+        // Função para fechar o modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+
+        // Acessando os elementos do DOM
+        var termsLink = document.getElementById("terms-link");
+        var privacyLink = document.getElementById("privacy-link");
+        var termsModal = document.getElementById("terms-modal");
+        var privacyModal = document.getElementById("privacy-modal");
+
+        var closeTerms = document.getElementById("close-terms");
+        var closePrivacy = document.getElementById("close-privacy");
+
+        // Eventos de clique para abrir os modais
+        termsLink.onclick = function() {
+            openModal("terms-modal");
+        }
+
+        privacyLink.onclick = function() {
+            openModal("privacy-modal");
+        }
+
+        // Eventos de clique para fechar os modais
+        closeTerms.onclick = function() {
+            closeModal("terms-modal");
+        }
+
+        closePrivacy.onclick = function() {
+            closeModal("privacy-modal");
+        }
+
+        // Fecha o modal se o usuário clicar fora do conteúdo
+        window.onclick = function(event) {
+            if (event.target == termsModal) {
+                closeModal("terms-modal");
+            } else if (event.target == privacyModal) {
+                closeModal("privacy-modal");
+            }
+        }
+    </script>
+    <script src="assets/js/viacep.js"></script>
+    <script src="assets/js/cadastro.js"></script>
 </body>
 
 </html>

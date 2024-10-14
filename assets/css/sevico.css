@@ -1,0 +1,157 @@
+/* RESET DE CSS BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f9;
+    color: #000000;
+    line-height: 1.6;
+}
+
+/* ESTILOS DO MENU */
+nav.nav-procurapro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #04164e;
+}
+
+nav.nav-procurapro .logo {
+    width: 150px;
+}
+
+nav.nav-procurapro ul {
+    display: flex;
+    list-style: none;
+}
+
+nav.nav-procurapro ul li {
+    margin: 0 15px;
+}
+
+nav.nav-procurapro ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav.nav-procurapro ul li a:hover,
+nav.nav-procurapro ul li a.active {
+    color: #0c1f3b;
+}
+
+.cadastro-btn {
+    background-color: #f3f3f3;
+    color: #567EBB;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    margin-left: 15px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.cadastro-btn:hover {
+    background-color: #B5B9BE;
+}
+
+/* ESTILOS DA SEÇÃO DE BENEFÍCIOS */
+.beneficios-container {
+    padding: 50px 10%;
+    background-color: #cfd0dd;
+    text-align: center;
+}
+
+.beneficios-container h1 {
+    font-size: 2.5rem;
+    color: #567EBB;
+    margin-bottom: 40px;
+}
+
+.beneficios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: start;
+}
+
+.beneficio-item {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    transition: transform 0.3s ease;
+}
+
+.beneficio-item:hover {
+    transform: translateY(-5px);
+}
+
+.beneficio-icon {
+    font-size: 3rem;
+    color: #567EBB;
+    margin-bottom: 20px;
+}
+
+.beneficio-item h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.beneficio-item p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+.beneficio-item img {
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+/* RODAPÉ */
+footer.footer-procurapro {
+    background-color: #567EBB;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+footer.footer-procurapro p {
+    font-size: 14px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    nav.nav-procurapro ul {
+        display: none;
+    }
+
+    nav.nav-procurapro .menu-outline {
+        display: block;
+        font-size: 2rem;
+        color: #fff;
+    }
+
+    .beneficios-container {
+        padding: 20px;
+    }
+
+    .beneficio-item {
+        padding: 20px;
+    }
+
+    .beneficios-grid {
+        grid-template-columns: 1fr;
+    }
+}

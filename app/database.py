@@ -3,7 +3,7 @@ from psycopg2 import pool
 
 # Criar o pool de conexões
 try:
-    connection_pool = psycopg2.pool.SimpleConnectionPool(1, 20, "postgresql://postgres:135790@localhost:5432/procurapro")
+    connection_pool = psycopg2.pool.SimpleConnectionPool(1, 20, "postgresql://postgres:1@localhost:5432/procura_pro")
     print("Conexão com o PostgreSQL criada com sucesso")
 except (Exception, psycopg2.DatabaseError) as error:
     print("Erro ao conectar ao PostgreSQL", error)

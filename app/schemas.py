@@ -1,14 +1,16 @@
 from pydantic import BaseModel, EmailStr
+from typing import Optional
 
 class UsuarioCriar(BaseModel):
     nome: str
     email: EmailStr
     senha: str
-    idade: int
+    telefone: str
     cpf: str
-    cidade_id: int
+    cidade: str
+    uf: str
     rua: str
-    complemento: str
+    numero: str
 
 class UsuarioLogin(BaseModel):
     email: EmailStr
@@ -18,4 +20,14 @@ class UsuarioLogado(BaseModel):
     email: EmailStr
     usuario_id: int
     nome: str
+    
+class ServicoCriar(BaseModel):
+    descricao: str
+    valor: float
+    usuario_id: int
 
+class ServicoCriado(BaseModel):
+    servico_id: int
+    descricao: str
+    valor: float
+    usuario_id: int
