@@ -5,3 +5,5 @@ function menucelular()
     navBar.classList.toggle("escondemenu");
 }
 
+
+

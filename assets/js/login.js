@@ -31,7 +31,7 @@ document.getElementById('formLogin').addEventListener('submit', async function(e
         
             // Capturar o access_token e o nome do usuário da resposta
             const accessToken = result.access_token;
-            const userName = 'celso' //result.user_name; // Certifique-se de que o campo existe na resposta
+            const userName = 'Felipe di sessa da campo salles' //result.user_name; // Certifique-se de que o campo existe na resposta
         
             // Salvar o access_token e o nome nos cookies
             document.cookie = `authToken=${accessToken}; path=/; max-age=3600`;
