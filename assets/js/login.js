@@ -27,17 +27,23 @@ document.getElementById('formLogin').addEventListener('submit', async function(e
 
         if (response.ok) {
             const result = await response.json();
-            console.log('Dados recebidos do servidor:', result);
         
             // Capturar o access_token e o nome do usuário da resposta
             const accessToken = result.access_token;
-            const userName = 'Felipe di sessa da campo salles' //result.user_name; // Certifique-se de que o campo existe na resposta
+            const userId = result.idUsuario;
+            const userName = result.nome; //result.user_name; // Certifique-se de que o campo existe na resposta
+            const cidade = result.cidade;
+            const uf = result.uf;
         
             // Salvar o access_token e o nome nos cookies
             document.cookie = `authToken=${accessToken}; path=/; max-age=3600`;
             document.cookie = `userName=${userName}; path=/; max-age=3600`; // Salva o nome do usuário
+            document.cookie = `userId=${userId}; path=/; max-age=3600`;
+            document.cookie = `userCidade=${cidade}; path=/; max-age=3600`;
+            document.cookie = `userUf=${uf}; path=/; max-age=3600`;
         
             alert('Login bem-sucedido!');
+            
             window.location.href = 'index.html'; // Redirecione para a página desejada após o login
         } else {
             const errorResult = await response.json();

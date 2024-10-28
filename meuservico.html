@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procura Pro</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Header com o menu do site -->
+    <header class="destaque">
+        <nav id="navBar">
+            <a href="index.html">  <img src="assets/img/logo.png" alt="" class="logo"></a>
+            <ul class="nav-links">
+                <li><a href="categoria.html" title="" class="active">Serviços Populares</a></li>
+                <li><a href="categoria.html" title=""> Seja um Prestador</a></li>
+                <li><a href="categoria.html" title="">Ver Pacotes</a></li>
+            </ul>
+            <a href="cadastro.html" title="" class="cadastro-btn">Cadastre-se Agora</a>
+            <a href="login.html" title="" class="cadastro-btn">Login</a>
+            <a href="" title="" class="cadastro-btn">Perfil</a>
+
+             <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+            <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
+             <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+
+        </nav>
+    </header>
+
+    <!-- Seção para exibir serviços do usuário -->
+    <section id="user-services">
+        <h2>Meus Serviços</h2>
+        <div id="services-list"></div>
+    </section>
+
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", function () {
+        const userId = 123;  // Exemplo de ID do usuário logado
+        const servicesList = document.getElementById("services-list");
+    
+        // Função para buscar serviços do usuário logado
+        async function fetchUserServices() {
+            try {
+                const response = await fetch(`/ws/buscarServico/${userId}`);
+                if (!response.ok) throw new Error("Erro ao buscar os serviços");
+    
+                const services = await response.json();
+                displayServices(services);
+            } catch (error) {
+                console.error("Erro:", error);
+                servicesList.innerHTML = "<p>Erro ao carregar os serviços.</p>";
+            }
+        }
+    
+        // Função para exibir serviços
+        function displayServices(services) {
+            servicesList.innerHTML = "";  // Limpa a lista de serviços
+            services.forEach(service => {
+                const serviceCard = document.createElement("div");
+                serviceCard.classList.add("service-card");
+                serviceCard.innerHTML = `
+                    <h3>${service.nome}</h3>
+                    <p>${service.descricao}</p>
+                    <p><strong>Preço:</strong> R$${service.preco}</p>
+                `;
+                servicesList.appendChild(serviceCard);
+            });
+        }
+    
+        // Chamada da função ao carregar a página
+        fetchUserServices();
+    });
+    </script>
+</body>
+</html>
