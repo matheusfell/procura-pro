@@ -22,13 +22,14 @@ class UsuarioLogado(BaseModel):
     nome: str
     cidade: str
     uf: str
-    
+
 class ServicoCriar(BaseModel):
     descricao: str
     valor: float
     usuario_id: int
     cidade: str
     uf: str
+    imagem: Optional[str] = None  # Caminho da imagem ou URL, opcional
 
 class ServicoCriado(BaseModel):
     servico_id: int
@@ -37,3 +38,4 @@ class ServicoCriado(BaseModel):
     cidade: str
     uf: str
     usuario_id: int
+    imagem: Optional[str] = None  # Caminho da imagem ou URL, opcional

@@ -9,7 +9,6 @@
 <body>
 
     <!--MENU DO SITE -->
-    <!--MENU DO SITE -->
     <nav id="navBar">
         <a href="index.html">  <img src="assets/img/logo.png" alt="" class="logo"></a>
         <ul class="nav-links">
@@ -21,10 +20,7 @@
         <a href="login.html" title="" class="cadastro-btn">Login</a>
         <a href="" title="" class="cadastro-btn">Perfil</a>
 
-         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
         <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
-         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
     </nav>
 
     <div class="servico-detalhes" id="detalhes-servico">
@@ -53,7 +49,7 @@
 
         // Função para exibir os detalhes do serviço
         function exibirDetalhesServico(servico) {
-            console.log(servico)
+            console.log(servico);
             const detalhesServico = document.getElementById('detalhes-servico');
             detalhesServico.innerHTML = `
                 <div class="servico-titulo">
@@ -65,21 +61,22 @@
                             <span>${servico.visitas || 777} visitas .</span>
                         </div>
                         <div>
-                            <p>localização: ${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</p>
+                            <p>Localização: ${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</p>
                         </div>
                     </div>
                 </div>
 
                 <div class="galeria">
                     <div class="galeria-img1">
-                        <img src="${servico.imagemUrl || 'assets/img/1.png'}" alt="">
+                        <!-- Exibe a imagem do serviço -->
+                        <img src="${servico.imagem || 'assets/img/1.png'}" alt="Imagem do Serviço">
                     </div>
                 </div>
 
                 <div class="pequenos-detalhes">
                     <h2>Entre em contato com ${servico.usuario_nome || 'Nome do Prestador'}</h2>
                     <p>${servico.descricao || 'Descrição do serviço'}</p>
-                    <h4> ${servico.valor || servico.descricao } / dia</h4>
+                    <h4> R$ ${servico.valor || 'Valor não especificado'} / dia</h4>
                 </div>
                 <hr class="linha-hr">
 
@@ -91,10 +88,11 @@
                     <input type="number" name="valor" placeholder="Valor" required>
                     <textarea name="solicitacao" placeholder="Descrição da Solicitação" required></textarea>
                     <button type="submit">Solicitar Orçamento</button>
+                    <button type="submit"><a class="email-link" href="mailto:${servico.usuario_email}?subject=Sugestão%20de%20orçamento%20do%20Procura%20pro&body=Prezado%20${servico.usuario_nome},%20estou%20entrando%20em%20contato%20para%20solicitar:">Me envie um e-mail!</a></button>
                 </form>
-
+                
                 <ul class="lista-detalhes">
-                    <li><ion-icon name="hammer-outline"></ion-icon> Servico Geral: <span>${servico.tipo || 'Serviço Completo Para Você'}</span></li>
+                    <li><ion-icon name="hammer-outline"></ion-icon> Serviço Geral: <span>${servico.tipo || 'Serviço Completo Para Você'}</span></li>
                     <li><ion-icon name="shield-checkmark-outline"></ion-icon> Segurança: <span>Perfil Verificado</span></li>
                     <li><ion-icon name="ribbon-outline"></ion-icon> Excelência: <span>Perfil Com Experiência</span></li>
                 </ul>
@@ -115,8 +113,8 @@
 
                 <div class="perfil">
                     <div class="perfil-info">
-                        <img src="assets/img/perfil_foto.png" alt="" class="perfil-img">
-                        <h2>Prestador: ${servico.prestador || 'Nome do Prestador'}</h2>
+                        <img src="assets/img/59170.png"  alt="" class="perfil-img">
+                        <h2>Prestador: ${servico.prestador || servico.usuario_nome }</h2>
                     </div>
                     <p>
                         ${'<ion-icon name="star"></ion-icon>'.repeat(servico.avaliacao || 4)}
@@ -159,7 +157,7 @@
         // Carrega os detalhes do serviço ao abrir a página
         buscarDetalhesServico();
     </script>
-<script src="assets/js/index.js"></script>
+    <script src="assets/js/index.js"></script>
 
 </body>
 </html>

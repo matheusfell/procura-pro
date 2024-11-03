@@ -17,11 +17,6 @@
         <a href="cadastro.html" title="" class="cadastro-btn">Cadastre-se Agora</a>
         <a href="login.html" title="" class="cadastro-btn">Login</a>
         <a href="" title="" class="cadastro-btn">Perfil</a>
-
-         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-        <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
-         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
     </nav>
 
     <div class="container">
@@ -82,21 +77,21 @@
             servicos.forEach(servico => {
                 const servicoElement = document.createElement('div');
                 servicoElement.classList.add('servicos');
+
+                const imagemUrl = servico.imagem ? servico.imagem : 'assets/img/1.png';
+                console.log(servico.imagem)
+
                 servicoElement.innerHTML = `
                     <a href="servico.html?id=${servico.id}" class="servico-link">
                         <div class="servico-img">
-                            <img src="${servico.imagemUrl || 'assets/img/9.png'}" alt="">
+                            <img src="${imagemUrl}" alt="Imagem do Serviço">
                         </div>
                         <div class="servico-info">
-                            <p>${servico.cidade || 'Serviço Geral'}</p>
-                            <h1>${servico.nome || 'Nome do Prestador'}</h1>
-                            <div class="estrelas">
-                                ${'<ion-icon name="star"></ion-icon>'.repeat(servico.avaliacao || 0)}
-                                ${(servico.avaliacao % 1 !== 0) ? '<ion-icon name="star-half"></ion-icon>' : ''}
-                            </div>
+                            <p>${servico.usuario_nome || 'Serviço Geral'}</p>
+                            <h1>${servico.descricao || 'Nome do Prestador'}</h1>
                             <div class="servico-valor">
                                 <p>Serviços a partir de</p>
-                                <h3>R$ ${servico.valor || servico.descricao} <span>por dia</span></h3>
+                                <h3>R$ ${servico.valor} <span>por dia</span></h3>
                             </div>
                         </div>
                     </a>
@@ -105,6 +100,5 @@
             });
         }
     </script>
-    <script src="assets/js/index.js"></script>
 </body>
 </html>

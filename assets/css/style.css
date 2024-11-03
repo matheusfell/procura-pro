@@ -3,6 +3,7 @@
     padding:0;
     box-sizing: border-box;
     font-family: 'poppins', sans-serif;
+    text-decoration: none;
 
 }
 
@@ -369,7 +370,8 @@ nav .menu-outline{
     color:var(--cor-fonte-sub-titulo)
 }
 .servico-img img{
-    width: 100%;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
     object-position:center ;
     border-radius: 12px;
@@ -474,7 +476,14 @@ nav .menu-outline{
  .paginacao .ativo{
     background-color: var(--cor-info-servico); 
  }
-
+.email-link{
+    text-decoration: none;
+    color: #ddd;
+}
+.servico-info{
+    text-decoration: none;
+    
+}
  /* ---------------------------------VESAO PARA CELULAR ----------------------------------*/
  /* Estilos gerais para dispositivos móveis */
 @media only screen and (max-width: 768px) {

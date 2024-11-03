@@ -10,21 +10,22 @@ document.getElementById('serviceForm').addEventListener('submit', async function
     const imagem = document.getElementById('imagem').files[0]; // Captura o arquivo de imagem
 
     // Verificação simples para garantir que os campos não estão vazios e valor é número
-    if (!descricao || isNaN(valor) || isNaN(userId) || !userCidade || !userUf || !imagem) {
-        alert('Por favor, preencha todos os campos corretamente e selecione uma imagem!');
-        return;
-    }
+    // if (!descricao || isNaN(valor) || isNaN(userId) || !userCidade || !userUf) {
+    //     alert('Por favor, preencha todos os campos corretamente e selecione uma imagem!');
+    //     return;
+    // }
 
     // Criar o objeto FormData para envio
     const formData = new FormData();
     formData.append('descricao', descricao);
-    formData.append('valor', valor);
+    formData.append('valor', valor);  // O valor será enviado como string, o back-end deve tratar isso como float
     formData.append('usuario_id', userId);
     formData.append('cidade', userCidade);
     formData.append('uf', userUf);
     formData.append('imagem', imagem); // Adiciona a imagem no FormData
 
-    console.log(formData); // Para depuração
+    // Depuração: Verifique o conteúdo de formData
+    console.log('Conteúdo do FormData:', Array.from(formData.entries())); // Lista o conteúdo de cada campo no FormData
 
     // Enviar os dados via fetch API para o endpoint /ws/registrarServico
     try {
@@ -48,11 +49,11 @@ document.getElementById('serviceForm').addEventListener('submit', async function
         console.error('Erro ao enviar a requisição:', error);
         alert('Erro de conexão. Verifique sua conexão de rede.');
     }
-
-    // Função para obter o cookie pelo nome
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
 });
+
+// Função para obter o cookie pelo nome
+function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(';').shift();
+}
