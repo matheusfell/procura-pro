@@ -2,15 +2,15 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
     event.preventDefault(); // Previne o comportamento padrão do formulário
 
     // Capturar os dados do formulário
-    const nome = document.getElementById('nome').value;
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    const telefone = document.getElementById('telefone').value;
-    const cpf = document.getElementById('cpf').value;
-    const cidade = document.getElementById('cidade').value;
-    const estado = document.getElementById('estado').value;
-    const rua = document.getElementById('rua').value;
-    const numero = document.getElementById('numero').value;
+    const nome = document.getElementById('nome').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const senha = document.getElementById('senha').value.trim();
+    const telefone = document.getElementById('telefone').value.trim();
+    const cpf = document.getElementById('cpf').value.trim();
+    const cidade = document.getElementById('cidade').value.trim();
+    const estado = document.getElementById('estado').value.trim();
+    const rua = document.getElementById('rua').value.trim();
+    const numero = document.getElementById('numero').value.trim();
 
     // Verificação simples para garantir que os campos não estão vazios
     if (!nome || !email || !senha || !telefone || !cpf || !cidade || !estado || !rua || !numero) {
@@ -26,7 +26,7 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
         telefone: telefone,
         cpf: cpf,
         cidade: cidade,
-        uf: estado, // Alteração de "estado" para "uf"
+        uf: estado,
         rua: rua,
         numero: numero
     };
@@ -49,12 +49,21 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
             const result = await response.json();
             console.log('Resposta do servidor:', result);
             alert('Cadastro bem-sucedido!');
-            window.location.href = 'index.html'
+            window.location.href = 'index.html';
         } else {
-            const errorResult = await response.json(); // Captura a resposta do erro
+            // Tenta ler a resposta como JSON primeiro
+            let errorResult;
+            try {
+                errorResult = await response.json();
+            } catch {
+                errorResult = await response.text();
+            }
+
             console.error('Erro ao registrar usuário:', errorResult);
+            alert(`Informaçao ja cadastrada: ${errorResult }`);
         }
     } catch (error) {
         console.error('Erro ao enviar a requisição:', error);
+        alert('Erro de conexão. Verifique sua conexão com o servidor e tente novamente.');
     }
 });

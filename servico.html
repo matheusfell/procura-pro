@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Categoria Serviços - Procura Pro</title>
+    <title>Detalhes do Serviço - Procura Pro</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
 
     <!--MENU DO SITE -->
-    <nav id="navBar" class="nav-procurapro">
-        <a href="index.html"> <img src="assets/img/logo.png" alt="" class="logo"></a>
+    <!--MENU DO SITE -->
+    <nav id="navBar">
+        <a href="index.html">  <img src="assets/img/logo.png" alt="" class="logo"></a>
         <ul class="nav-links">
             <li><a href="categoria.html" title="" class="active">Serviços Populares</a></li>
             <li><a href="categoria.html" title=""> Seja um Prestador</a></li>
@@ -22,134 +21,145 @@
         <a href="login.html" title="" class="cadastro-btn">Login</a>
         <a href="" title="" class="cadastro-btn">Perfil</a>
 
-        <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
         <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
-        <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
 
     </nav>
-    <div class="servico-detalhes">
-        <div class="servico-titulo">
 
-            <h1>Servico</h1>
-
-            <div class="linha">
-                <div>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-half"></ion-icon>
-
-                    <span>777 visitas .</span>
-                </div>
-
-                <div>
-                    <p> localização: Bebedouro - SP</p>
-                </div>
-
-            </div>
-
-        </div>
-        <div class="galeria">
-            <div class="galeria-img1">
-                <img src="assets/img/1.png " alt="">
-            </div>
-        </div>
-
-        <div class="pequenos-detalhes">
-            <h2>Entre em contato com Felipe Di Sessa</h2>
-            <p>Serviço de Pedreiro Encanamento e Eletricista</p>
-            <h4>R$ 777 / dia</h4>
-        </div>
-        <hr class="linha-hr">
-
-        <form action="https://formsubmit.co/joaovitorr0508@gmail.com" method="post" class="orcamento">
-            <input type="hidden" name="_next" value="http://127.0.0.1:5501/servico.html">
-            <input type="text" name="name" placeholder="Nome" required>
-            <input type="text" name="name" placeholder="Celular para contato" required>
-            <input type="email" name="email" placeholder="Email" required>
-            <input type="number" name="valor" placeholder="Valor" required>
-            <textarea name="solicitacao" placeholder="Descrição da Solicitação" required></textarea>
-            <button type="submit">Solicitar Orçamento</button>
-        </form>
-
-        <ul class="lista-detalhes">
-            <li>
-                <ion-icon name="hammer-outline"></ion-icon>Servico Geral:
-                <span>Serviço Completo Para Você </span>
-            </li>
-            <li>
-                <ion-icon name="shield-checkmark-outline"></ion-icon>Segurança:
-                <span>Perfil Verificado </span>
-            </li>
-            <li>
-                <ion-icon name="ribbon-outline"></ion-icon>Excelencia:
-                <span>Perfil Com Experiência</span>
-            </li>
-        </ul>
-
-        <hr class="linha-hr">
-
-        <div class="mapa">
-            <h3>Região de Atuação</h3>
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.9863526166464!2d-48.487792500000005!3d-20.953063200000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94bbe3f9e97dd09f%3A0xbb437f32a7b3538d!2sR.%20Campos%20Sales%2C%201671%20-%20Centro%2C%20Bebedouro%20-%20SP%2C%2014701-410!5e0!3m2!1spt-BR!2sbr!4v1728765116796!5m2!1spt-BR!2sbr"
-                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <b>Bebedouro - São Paulo</b>
-            <p>Região de atuação do profissionais</p>
-        </div>
-        <hr class="linha-hr">
-
-        <div class="perfil">
-            <div class="perfil-info">
-                <img src="assets/img/perfil_foto.png" alt="" class="perfil-img">
-                <h2>Prestador: Felipe Tilleli Marques Di Sessa</h2>
-            </div>
-            <p>
-                <span>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star"></ion-icon>
-                    <ion-icon name="star-half"></ion-icon>
-                </span>
-                &nbsp; &nbsp; 777 Avaliados
-                &nbsp; &nbsp; Taxa de resposta 100%
-                &nbsp; &nbsp; Responde Rápido
-            </p>
-            <a href="https://wa.me/5519987205121" class="contato" target="_blank">Fale Comigo</a>
-
-        </div>
-
-
+    <div class="servico-detalhes" id="detalhes-servico">
+        <!-- Conteúdo dinâmico do serviço será carregado aqui -->
     </div>
 
+    <footer class="rodape">
+        <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-linkedin"></ion-icon></a>
+        <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+        <hr>
+        <p>Todos os direitos reservados à ProcuraPro</p>
+    </footer>
 
-    <!-- Inicio site-->
-    <div class="container">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/app.js"></script>
 
+    <script>
+        // Função para obter o ID do serviço da URL
+        function getServicoIdFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('id');
+        }
 
+        // Função para exibir os detalhes do serviço
+        function exibirDetalhesServico(servico) {
+            console.log(servico)
+            const detalhesServico = document.getElementById('detalhes-servico');
+            detalhesServico.innerHTML = `
+                <div class="servico-titulo">
+                    <h1>${servico.nome || 'Serviço'}</h1>
+                    <div class="linha">
+                        <div>
+                            ${'<ion-icon name="star"></ion-icon>'.repeat(servico.avaliacao || 4)}
+                            ${(servico.avaliacao % 1 !== 0) ? '<ion-icon name="star-half"></ion-icon>' : ''}
+                            <span>${servico.visitas || 777} visitas .</span>
+                        </div>
+                        <div>
+                            <p>localização: ${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</p>
+                        </div>
+                    </div>
+                </div>
 
+                <div class="galeria">
+                    <div class="galeria-img1">
+                        <img src="${servico.imagemUrl || 'assets/img/1.png'}" alt="">
+                    </div>
+                </div>
 
+                <div class="pequenos-detalhes">
+                    <h2>Entre em contato com ${servico.usuario_nome || 'Nome do Prestador'}</h2>
+                    <p>${servico.descricao || 'Descrição do serviço'}</p>
+                    <h4> ${servico.valor || servico.descricao } / dia</h4>
+                </div>
+                <hr class="linha-hr">
 
+                <form action="https://formsubmit.co/${servico.usuario_email}" method="post" class="orcamento">
+                    <input type="hidden" name="_next" value="servico.html">
+                    <input type="text" name="name" placeholder="Nome" required>
+                    <input type="text" name="contact" placeholder="Celular para contato" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="number" name="valor" placeholder="Valor" required>
+                    <textarea name="solicitacao" placeholder="Descrição da Solicitação" required></textarea>
+                    <button type="submit">Solicitar Orçamento</button>
+                </form>
 
-        <footer class="rodape">
-            <a href=""><ion-icon name="logo-facebook"></ion-icon></a>
-            <a href=""><ion-icon name="logo-instagram"></ion-icon></a>
-            <a href=""><ion-icon name="logo-linkedin"></ion-icon></a>
-            <a href=""><ion-icon name="logo-youtube"></ion-icon></a>
-            <hr>
-            <p>Todos os direitos reservados à ProcuraPro</p>
-        </footer>
+                <ul class="lista-detalhes">
+                    <li><ion-icon name="hammer-outline"></ion-icon> Servico Geral: <span>${servico.tipo || 'Serviço Completo Para Você'}</span></li>
+                    <li><ion-icon name="shield-checkmark-outline"></ion-icon> Segurança: <span>Perfil Verificado</span></li>
+                    <li><ion-icon name="ribbon-outline"></ion-icon> Excelência: <span>Perfil Com Experiência</span></li>
+                </ul>
 
-        
+                <hr class="linha-hr">
 
-    
+                <div class="mapa">
+                    <h3>Região de Atuação</h3>
+                    <iframe
+                        src="https://www.google.com/maps/place/${servico.cidade},+${servico.uf}"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <b>${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</b>
+                    <p>Região de atuação do profissional</p>
+                </div>
 
-        <!--FIM CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-        <script src="assets/js/app.js"></script>
+                <hr class="linha-hr">
+
+                <div class="perfil">
+                    <div class="perfil-info">
+                        <img src="assets/img/perfil_foto.png" alt="" class="perfil-img">
+                        <h2>Prestador: ${servico.prestador || 'Nome do Prestador'}</h2>
+                    </div>
+                    <p>
+                        ${'<ion-icon name="star"></ion-icon>'.repeat(servico.avaliacao || 4)}
+                        ${(servico.avaliacao % 1 !== 0) ? '<ion-icon name="star-half"></ion-icon>' : ''} 
+                        &nbsp; &nbsp; ${servico.avaliacoes || 777} Avaliações
+                        &nbsp; &nbsp; Taxa de resposta 100%
+                        &nbsp; &nbsp; Responde Rápido
+                    </p>
+                    <a href="https://wa.me/55${servico.usuario_telefone}" class="contato" target="_blank">Fale Comigo</a>
+                </div>
+            `;
+        }
+
+        // Função para buscar os detalhes do serviço na API
+        async function buscarDetalhesServico() {
+            const servicoId = getServicoIdFromUrl();
+            const url = `http://localhost:8000/ws/buscarServico/${servicoId}`;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    const servico = await response.json();
+                    exibirDetalhesServico(servico);
+                } else {
+                    console.error('Erro ao obter os detalhes do serviço:', response.status);
+                    document.getElementById('detalhes-servico').innerHTML = '<p>Erro ao carregar o serviço.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao buscar detalhes do serviço:', error);
+            }
+        }
+
+        // Carrega os detalhes do serviço ao abrir a página
+        buscarDetalhesServico();
+    </script>
+<script src="assets/js/index.js"></script>
 
 </body>
+</html>

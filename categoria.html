@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categoria Serviços - Procura Pro</title>
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-
 <body>
-
-    <!--MENU DO SITE -->
-    <nav id="navBar" class="nav-procurapro">
-        <a href="index.html"> <img src="assets/img/logo.png" alt="" class="logo"></a>
+    <nav id="navBar">
+        <a href="index.html">  <img src="assets/img/logo.png" alt="" class="logo"></a>
         <ul class="nav-links">
             <li><a href="categoria.html" title="" class="active">Serviços Populares</a></li>
             <li><a href="categoria.html" title=""> Seja um Prestador</a></li>
@@ -22,127 +18,93 @@
         <a href="login.html" title="" class="cadastro-btn">Login</a>
         <a href="" title="" class="cadastro-btn">Perfil</a>
 
-        <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
         <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
-        <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+         <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
 
     </nav>
 
-    <!--FIM MENU DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-    <!-- Inicio site-->
     <div class="container">
+        <!-- FORMULÁRIO DE BUSCA -->
+        <form id="busca-menu">
+            <input type="text" id="cidade-menu" placeholder="Digite a cidade">
+            <input type="text" id="servico-menu" placeholder="Digite o serviço">
+            <button type="submit">Buscar</button>
+        </form>
 
-        <!-- LISTAGEM DE SERVIÇO-->
-        <div class="lista-servico">
-            <!-- Coluna Esquerda para Listagem Dinâmica de Serviços -->
-            <div id="resultado-servicos" class="coluna-esquerda">
-                <p>200+ Opções</p>
-                <h1>Lista de Serviços</h1>
-                <!-- Conteúdo será adicionado via JavaScript -->
-            </div>
-        </div>
-
-
-
-        <div class="coluna-direita">
-            <div class="barra-lateral">
-                <h2>Filtro de Busca</h2>
-
-                <h3>Tipo de Serviços</h3>
-                <form action="" method="get" id='menulatereal'>
-                    <div class="filtro">
-                        <input type="checkbox" name="servico1" id="pedreiro">
-                        <p>Pedreiro</p> <span>[0]</span>
-                    </div>
-                    <div class="filtro">
-                        <input type="checkbox" name="servico2" id="pintor">
-                        <p>Pintor</p> <span>[0]</span>
-                    </div>
-                    <div class="filtro">
-                        <input type="checkbox" name="servico3" id="psicologa">
-                        <p>Psicóloga</p> <span>[0]</span>
-                    </div>
-                    <div class="filtro">
-                        <input type="checkbox" name="servico4" id="jardineiro">
-                        <p>Jardineiro</p> <span>[0]</span>
-                    </div>
-                    <div class="filtro">
-                        <input type="checkbox" name="servico5" id="marceneiro">
-                        <p>Marceneiro</p> <span>[0]</span>
-                    </div>
-                    <div class="filtro">
-                        <input type="checkbox" name="servico6" id="encanador">
-                        <p>Encanador</p> <span>[0]</span>
-                    </div>
-
-                    <h3>Tipos</h3>
-                    <div class="filtro">
-                        <input type="checkbox" name="tipo1" id="custo_beneficio">
-                        <p>Custo Benefício</p> <span>[0]</span>
-                    </div>
-                    <div class="filtro">
-                        <input type="checkbox" name="tipo2" id="melhor_avaliados">
-                        <p>Melhor Avaliado</p> <span>[0]</span>
-                    </div>
-
-                    <h3>Estado/Cidade</h3>
-                    <div class="filtro">
-                        <select name="cidade" id="cidade">
-                            <option value="bebedouro">Bebedouro</option>
-                            <option value="pitangueiras">Pitangueiras</option>
-                        </select>
-                    </div>
-                    <div class="filtro">
-                        <select name="estado" id="estado">
-                            <option value="sp">São Paulo</option>
-                            <option value="pr">Paraná</option>
-                        </select>
-                    </div>
-
-                    <br>
-                    <button class="cadastro-btn">Buscar</button>
-                </form>
-            </div>
+        <!-- LISTAGEM DE SERVIÇOS -->
+        <div id="resultado-servicos" class="coluna-esquerda">
+            <p>200+ Opções</p>
+            <h1>Lista de Serviços</h1>
         </div>
     </div>
 
-    <!--Paginaçao-->
-    <div class="paginacao">
-        <img src="assets/img/arrow.png" alt="">
-        <span class="ativo">1</span>
-        <span>2</span>
-        <span>3</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span>&middot; &middot; &middot; &middot;&middot;</span>
-        <span>10</span>
-        <img src="assets/img/arrow.png" alt="seta-direita" class="seta-direita">
-    </div>
+    <!-- JavaScript -->
+    <script>
+        document.getElementById('busca-menu').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
+            const cidade = document.getElementById('cidade-menu').value;
+            const servico = document.getElementById('servico-menu').value;
+            const url = `http://localhost:8000/ws/buscarServicos?cidade=${encodeURIComponent(cidade)}&servico=${encodeURIComponent(servico)}`;
 
-    <footer class="rodape">
-        <a href=""><ion-icon name="logo-facebook"></ion-icon></a>
-        <a href=""><ion-icon name="logo-instagram"></ion-icon></a>
-        <a href=""><ion-icon name="logo-linkedin"></ion-icon></a>
-        <a href=""><ion-icon name="logo-youtube"></ion-icon></a>
-        <hr>
-        <p>Todos os direitos reservados à ProcuraPro</p>
-    </footer>
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
 
-    <!--FIM CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+                if (response.ok) {
+                    const result = await response.json();
+                    const servicos = Array.isArray(result) ? result : result.servicos;
+                    console.log(servicos);
+                    exibirServicos(servicos);
+                } else {
+                    console.error('Erro na resposta da API:', response.status);
+                }
+            } catch (error) {
+                console.error('Erro ao enviar a requisição:', error);
+            }
+        });
+
+        function exibirServicos(servicos) {
+            const resultadoServicos = document.getElementById('resultado-servicos');
+            resultadoServicos.innerHTML = '';
+
+            if (!Array.isArray(servicos) || servicos.length === 0) {
+                resultadoServicos.innerHTML = '<p>Nenhum serviço encontrado.</p>';
+                return;
+            }
+
+            servicos.forEach(servico => {
+                const servicoElement = document.createElement('div');
+                servicoElement.classList.add('servicos');
+                servicoElement.innerHTML = `
+                    <a href="servico.html?id=${servico.id}" class="servico-link">
+                        <div class="servico-img">
+                            <img src="${servico.imagemUrl || 'assets/img/9.png'}" alt="">
+                        </div>
+                        <div class="servico-info">
+                            <p>${servico.cidade || 'Serviço Geral'}</p>
+                            <h1>${servico.nome || 'Nome do Prestador'}</h1>
+                            <div class="estrelas">
+                                ${'<ion-icon name="star"></ion-icon>'.repeat(servico.avaliacao || 0)}
+                                ${(servico.avaliacao % 1 !== 0) ? '<ion-icon name="star-half"></ion-icon>' : ''}
+                            </div>
+                            <div class="servico-valor">
+                                <p>Serviços a partir de</p>
+                                <h3>R$ ${servico.valor || servico.descricao} <span>por dia</span></h3>
+                            </div>
+                        </div>
+                    </a>
+                `;
+                resultadoServicos.appendChild(servicoElement);
+            });
+        }
+    </script>
     <script src="assets/js/index.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/consultaindex.js"></script>
-
-
-
-
-
-
 </body>
-
 </html>

@@ -987,3 +987,46 @@ padding:5px;
 .modal form button:hover {
   background-color: #445f8a;
 }
+/* Estilos para o formulário de busca */
+#busca-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+    padding: 10px;
+    gap: 10px;
+}
+
+#busca-menu input[type="text"] {
+    flex: 1;
+    padding: 12px 20px;
+    border: 1px solid var(--borda-busca-radape-celular);
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    color: var(--cor-fonte-sub-titulo);
+}
+
+#busca-menu input[type="text"]::placeholder {
+    color: #aaa;
+}
+
+#busca-menu input[type="text"]:focus {
+    border-color: var(--cor-hover-btn);
+    box-shadow: 0 0 5px rgba(16, 61, 114, 0.5);
+}
+
+#busca-menu button[type="submit"] {
+    padding: 12px 20px;
+    background-color: var(--cor-botao-pesquisa-top);
+    color: var(--cor-padrao-fonte);
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#busca-menu button[type="submit"]:hover {
+    background-color: var(--cor-hover-btn);
+}

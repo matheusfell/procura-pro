@@ -85,7 +85,7 @@ async def listar_servicos(nome: str = None, cidade: str = None, db=Depends(get_d
     cursor = db.cursor()
 
     # Iniciar a query base
-    query = "SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf  FROM servico s"
+    query = "SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf, u.nome, u.telefone, u.email  FROM servico s JOIN usuario u ON s.usuario_id = u.usuario_id"
     
     # Lista de condições para o WHERE
     conditions = []
@@ -118,6 +118,9 @@ async def listar_servicos(nome: str = None, cidade: str = None, db=Depends(get_d
                       "nome": servico[1], 
                       "descricao": servico[2], 
                       "usuario_id": servico[3], 
+                      "usuario_nome": servico[6],
+                      "usuario_telefone": servico[7],
+                      "usuario_email": servico[8],
                       "cidade": servico[4], 
                       "uf": servico[5]} for servico in servicos]
 
@@ -130,7 +133,7 @@ async def obter_servico(servico_id: int, db=Depends(get_db)):
     cursor = db.cursor()
 
     cursor.execute("""
-        SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, u.cidade, u.uf
+        SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, u.cidade, u.uf,  u.nome, u.telefone, u.email
         FROM servico s
         JOIN usuario u ON s.usuario_id = u.usuario_id
         WHERE s.servico_id = %s
@@ -142,7 +145,10 @@ async def obter_servico(servico_id: int, db=Depends(get_db)):
         servico_dict = {"id": servico[0], 
                       "nome": servico[1], 
                       "descricao": servico[2], 
-                      "usuario_id": servico[3], 
+                      "usuario_id": servico[3],
+                       "usuario_nome": servico[6],
+                      "usuario_telefone": servico[7],
+                      "usuario_email": servico[8], 
                       "cidade": servico[4], 
                       "uf": servico[5] }
         return servico_dict
