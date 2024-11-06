@@ -36,11 +36,22 @@
 
     <!-- JavaScript -->
     <script>
-        document.getElementById('busca-menu').addEventListener('submit', async function(event) {
-            event.preventDefault();
+        // Carrega a página com os parâmetros da URL e faz a busca
+        document.addEventListener('DOMContentLoaded', async function() {
+            const params = new URLSearchParams(window.location.search);
+            const cidade = params.get('cidade');
+            const servico = params.get('servico');
 
-            const cidade = document.getElementById('cidade-menu').value;
-            const servico = document.getElementById('servico-menu').value;
+            document.getElementById('cidade-menu').value = cidade || '';
+            document.getElementById('servico-menu').value = servico || '';
+
+            if (cidade || servico) {
+                buscarServicos(cidade, servico);
+            }
+        });
+
+        // Função para buscar serviços
+        async function buscarServicos(cidade, servico) {
             const url = `http://localhost:8000/ws/buscarServicos?cidade=${encodeURIComponent(cidade)}&servico=${encodeURIComponent(servico)}`;
 
             try {
@@ -55,7 +66,6 @@
                 if (response.ok) {
                     const result = await response.json();
                     const servicos = Array.isArray(result) ? result : result.servicos;
-                    console.log(servicos);
                     exibirServicos(servicos);
                 } else {
                     console.error('Erro na resposta da API:', response.status);
@@ -63,8 +73,9 @@
             } catch (error) {
                 console.error('Erro ao enviar a requisição:', error);
             }
-        });
+        }
 
+        // Exibe a lista de serviços na página
         function exibirServicos(servicos) {
             const resultadoServicos = document.getElementById('resultado-servicos');
             resultadoServicos.innerHTML = '';
@@ -79,7 +90,6 @@
                 servicoElement.classList.add('servicos');
 
                 const imagemUrl = servico.imagem ? servico.imagem : 'assets/img/1.png';
-                console.log(servico.imagem)
 
                 servicoElement.innerHTML = `
                     <a href="servico.html?id=${servico.id}" class="servico-link">
@@ -99,6 +109,18 @@
                 resultadoServicos.appendChild(servicoElement);
             });
         }
+
+        // Evento de busca manual
+        document.getElementById('busca-menu').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const cidade = document.getElementById('cidade-menu').value;
+            const servico = document.getElementById('servico-menu').value;
+            buscarServicos(cidade, servico);
+        });
     </script>
+     <script src="assets/js/app.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/app.js"></script>
+    
 </body>
 </html>

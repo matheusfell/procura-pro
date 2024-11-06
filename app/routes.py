@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, status, File, UploadFile, Form
 from app.database import get_db
 from app.auth import get_password_hash, verificar_senha, verifica_token, criar_token_acesso
-from app.schemas import UsuarioCriar, UsuarioLogado, UsuarioLogin, ServicoCriado
+from app.schemas import UsuarioCriar, UsuarioLogado, UsuarioLogin, ServicoCriado, Avaliacao
 import os
 from datetime import timedelta
 
@@ -106,7 +106,7 @@ async def registar_servico(
         "usuario_id": usuario_id, 
         "cidade": cidade, 
         "uf": uf, 
-        "imagem": caminho_imagem  # Confirme que este campo é uma string
+        "imagem": caminho_imagem
     }
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -115,38 +115,43 @@ async def registar_servico(
 async def listar_servicos(nome: str = None, cidade: str = None, db=Depends(get_db)):
     cursor = db.cursor()
 
-    # Iniciar a query base
-    query = "SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf, u.nome, u.telefone, u.email, s.imagem FROM servico s JOIN usuario u ON s.usuario_id = u.usuario_id"
-    
-    # Lista de condições para o WHERE
+    # Construção da query com LEFT JOIN para evitar problemas com NULL nas avaliações
+    query = """
+    SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf, 
+           u.nome, u.telefone, u.email, s.imagem, 
+           ROUND(AVG(a.nota)) as nota 
+    FROM servico s 
+    JOIN usuario u ON s.usuario_id = u.usuario_id 
+    LEFT JOIN avaliacao_servico a ON s.servico_id = a.servico_id 
+    """
+
+    # Condições dinâmicas
     conditions = []
-    
-    # Adicionar condições com base nos parâmetros de filtro
+    params = []
+
     if nome:
         conditions.append("s.descricao ILIKE %s")
+        params.append(f"%{nome}%")
+        
     if cidade:
         conditions.append("s.cidade ILIKE %s")
+        params.append(f"%{cidade}%")
     
-    # Montar a query completa com as condições
+    # Adiciona as condições na query caso existam
     if conditions:
         query += " WHERE " + " AND ".join(conditions)
     
-    # Preparar os parâmetros da query
-    params = []
-    if nome:
-        params.append(f"%{nome}%")
-    if cidade:
-        params.append(f"%{cidade}%")
-    
-    # Executar a query
+    # Agrupamento final
+    query += " GROUP BY s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf, u.nome, u.telefone, u.email, s.imagem"
+
+    # Executa a query com os parâmetros
     cursor.execute(query, tuple(params))
     servicos = cursor.fetchall()
     cursor.close()
 
-    # Transformar os resultados em uma lista de dicionários com URL completa da imagem
+    # Processa o resultado
     servicos_list = []
     for servico in servicos:
-        # Certifique-se de que imagem_path é uma string, e não uma referência de memória
         imagem_path = f"http://localhost:8000{servico[9]}" if servico[9] else "/assets/img/default.png"
         
         servico_dict = {
@@ -159,11 +164,13 @@ async def listar_servicos(nome: str = None, cidade: str = None, db=Depends(get_d
             "usuario_nome": servico[6],
             "usuario_telefone": servico[7],
             "usuario_email": servico[8],
-            "imagem": imagem_path  # Verifique que está sendo passada corretamente como string
+            "nota": servico[10] or 0,  # Caso nota seja None, define como 0
+            "imagem": imagem_path
         }
         servicos_list.append(servico_dict)
 
     return {"servicos": servicos_list}
+
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -171,15 +178,22 @@ async def listar_servicos(nome: str = None, cidade: str = None, db=Depends(get_d
 async def obter_servico(servico_id: int, db=Depends(get_db)):
     cursor = db.cursor()
 
+    # Consulta ajustada para incluir a média da nota e a quantidade de avaliações
     cursor.execute("""
-        SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf, u.nome, u.telefone, u.email, s.imagem
+        SELECT s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf, 
+               u.nome, u.telefone, u.email, s.imagem, 
+               ROUND(AVG(a.nota)) as nota, COUNT(a.servico_id) as quantidadeAvaliacoes
         FROM servico s
         JOIN usuario u ON s.usuario_id = u.usuario_id
+        LEFT JOIN avaliacao_servico a ON s.servico_id = a.servico_id
         WHERE s.servico_id = %s
+        GROUP BY s.servico_id, s.descricao, s.valor, s.usuario_id, s.cidade, s.uf, 
+                 u.nome, u.telefone, u.email, s.imagem
     """, (servico_id,))
     servico = cursor.fetchone()
     cursor.close()
 
+    # Processa o resultado da consulta
     if servico:
         imagem_path = f"http://localhost:8000{servico[9]}" if servico[9] else "/assets/img/default.png"
         
@@ -193,8 +207,32 @@ async def obter_servico(servico_id: int, db=Depends(get_db)):
             "usuario_nome": servico[6],
             "usuario_telefone": servico[7],
             "usuario_email": servico[8],
+            "nota": servico[10] or 0,  # Média da nota
+            "quantidadeAvaliacoes": servico[11] or 0,  # Quantidade de avaliações
             "imagem": imagem_path
         }
         return servico_dict
     else:
         raise HTTPException(status_code=404, detail="Serviço não encontrado")
+
+#--------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+# Rota para inserir uma nova avaliação
+@router.post("/ws/avaliarServico", response_model=Avaliacao)
+async def inserir_avaliacao(avaliacao: Avaliacao, db = Depends(get_db)):
+    cursor = db.cursor()
+    
+    # Validação da nota
+    if avaliacao.nota < 1 or avaliacao.nota > 5:
+        raise HTTPException(status_code=400, detail="A nota deve estar entre 1 e 5.")
+    
+    # Inserção da avaliação
+    cursor.execute("""
+        INSERT INTO avaliacao_servico (servico_id,  usuario_id , nota) 
+        VALUES (%s, %s, %s)
+    """, (avaliacao.servico_id, avaliacao.usuario_id, avaliacao.nota))
+    db.commit()
+    cursor.close()
+    
+    return avaliacao

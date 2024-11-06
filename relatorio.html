@@ -79,21 +79,6 @@
             color: #fff;
         }
 
-        /* Estilo específico para o botão "Sair" */
-        .logout-btn {
-            background-color: #ff6b6b;
-            color: white;
-            padding: 8px 12px;
-            border-radius: 4px;
-            font-weight: bold;
-            text-decoration: none;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .logout-btn:hover {
-            background-color: #ff4c4c;
-        }
-
         /* Container principal */
         .container {
             text-align: center;
@@ -163,26 +148,20 @@
     </style>
     <!-- jsPDF para gerar PDFs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <!-- index.js -->
-    <script src="index.js"></script>
 </head>
 <body>
     <!-- Topo com o menu de navegação -->
     <nav id="navBar">
-        <a href="index.html">
-            <img src="assets/img/logo.png" alt="Procura Pro Logo" class="logo">
-        </a>
+        <a href="index.html"><img src="assets/img/logo.png" alt="" class="logo"></a>
         <ul class="nav-links">
             <li><a href="categoria.html" class="active">Serviços Populares</a></li>
             <li><a href="categoria.html">Seja um Prestador</a></li>
             <li><a href="categoria.html">Ver Pacotes</a></li>
         </ul>
-        <div class="auth-buttons">
-            <a href="cadastro.html" class="cadastro-btn">Cadastre-se Agora</a>
-            <a href="login.html" class="cadastro-btn">Login</a>
-            <a href="" class="cadastro-btn">Perfil</a>
-            <a href="perfil.html" class="cadastro-btn" id="sair">Voltar</a>
-        </div>
+        <a href="cadastro.html" class="cadastro-btn">Cadastre-se Agora</a>
+        <a href="login.html" class="cadastro-btn">Login</a>
+        <a href="" class="cadastro-btn">Perfil</a>
+        <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
     </nav>
 
     <!-- Conteúdo principal com o título e descrição -->
@@ -208,7 +187,6 @@
                 <div class="icon">&#128736;</div>
                 <h2>Tipos de Serviços</h2>
                 <p>Baixar o relatório de tipos de serviços mais procurados.</p>
-                
             </div>
         </div>
     </div>
@@ -231,8 +209,15 @@
                 const doc = new jsPDF();
                 doc.text("Relatório de Todos os Serviços", 10, 10);
                 let y = 20;
+                
                 data.servicos.forEach(service => {
-                    doc.text(`Descrição: ${service.nome}, Valor: ${service.descricao}, Cidade: ${service.cidade}`, 10, y);
+                    doc.text(`Descrição: ${service.descricao}`, 10, y);
+                    y += 10;
+                    doc.text(`Valor: ${service.valor}, Cidade: ${service.cidade} - ${service.uf}`, 10, y);
+                    y += 10;
+                    doc.text(`Prestador: ${service.usuario_nome}, Telefone: ${service.usuario_telefone}, Email: ${service.usuario_email}`, 10, y);
+                    y += 10;
+                    doc.text("----------------------------------------------------------", 10, y);
                     y += 10;
                 });
                 doc.save("relatorio_todos_servicos.pdf");
@@ -241,12 +226,11 @@
             }
         }
 
-        // 2. Função para gerar PDF com cidades e porcentagens
+        // 2. Função para gerar PDF com porcentagens por cidade
         async function generateCityPercentagePDF() {
             try {
                 const data = await fetchServices();
                 
-                // Agrupar serviços por cidade e calcular porcentagem
                 const cityCounts = {};
                 const total = data.servicos.length;
 
@@ -262,7 +246,6 @@
                     };
                 });
 
-                // Gerar PDF com porcentagens por cidade
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
                 doc.text("Relatório de Cidades com Porcentagem", 10, 10);
@@ -282,12 +265,11 @@
             try {
                 const data = await fetchServices();
                 
-                // Agrupar serviços por tipo (nome) e calcular porcentagem
                 const typeCounts = {};
                 const total = data.servicos.length;
 
                 data.servicos.forEach(service => {
-                    const type = service.nome.toLowerCase();
+                    const type = service.descricao.toLowerCase();
                     typeCounts[type] = (typeCounts[type] || 0) + 1;
                 });
 
@@ -298,7 +280,6 @@
                     };
                 });
 
-                // Gerar PDF com porcentagens por tipo de serviço
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF();
                 doc.text("Relatório de Tipos de Serviços com Porcentagem", 10, 10);
@@ -313,38 +294,6 @@
             }
         }
     </script>
-    <script>
-        // Função para buscar todos os serviços disponíveis
-        async function fetchServices() {
-            const response = await fetch('http://localhost:8000/ws/buscarServicos');
-            if (!response.ok) {
-                throw new Error("Erro ao buscar dados de serviços");
-            }
-            return await response.json();
-        }
-
-        // Função para gerar PDF com a média de preços dos serviços
-        async function generatePriceAveragePDF() {
-            try {
-                const data = await fetchServices();
-                const { jsPDF } = window.jspdf;
-                const doc = new jsPDF();
-                doc.text("Relatório de Média de Preços dos Serviços", 10, 10);
-
-                // Calculando a média dos preços dos serviços
-                const total = data.servicos.reduce((acc, service) => acc + parseFloat(service.descricao || 0), 0);
-                const average = (total / data.servicos.length).toFixed(2);
-
-                doc.text(`Média de Preço dos Serviços: R$ ${average}`, 10, 20);
-                doc.text("Esses valores ajudam a entender as faixas de preços mais comuns entre os serviços cadastrados.", 10, 30);
-
-                doc.save("relatorio_media_precos.pdf");
-            } catch (error) {
-                console.error("Erro ao gerar PDF de média de preços:", error);
-            }
-        }
-    </script>
-
     <script src="assets/js/index.js"></script>
 </body>
 </html>

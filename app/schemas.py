@@ -39,3 +39,9 @@ class ServicoCriado(BaseModel):
     uf: str
     usuario_id: int
     imagem: Optional[str] = None  # Caminho da imagem ou URL, opcional
+
+
+class Avaliacao(BaseModel):
+    servico_id: int
+    usuario_id: int
+    nota: int  # nota entre 1 e 5

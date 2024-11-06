@@ -7,224 +7,105 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-
-     
     <div class="destaque">
-
-        <!--MENU DO SITE -->
+        <!-- MENU DO SITE -->
         <nav id="navBar">
-            <a href="index.html">  <img src="assets/img/logo.png" alt="" class="logo"></a>
+            <a href="index.html"><img src="assets/img/logo.png" alt="" class="logo"></a>
             <ul class="nav-links">
-                <li><a href="categoria.html" title="" class="active">Serviços Populares</a></li>
-                <li><a href="categoria.html" title=""> Seja um Prestador</a></li>
-                <li><a href="categoria.html" title="">Ver Pacotes</a></li>
+                <li><a href="categoria.html" class="active">Serviços Populares</a></li>
+                <li><a href="categoria.html">Seja um Prestador</a></li>
+                <li><a href="categoria.html">Ver Pacotes</a></li>
             </ul>
-            <a href="cadastro.html" title="" class="cadastro-btn">Cadastre-se Agora</a>
-            <a href="login.html" title="" class="cadastro-btn">Login</a>
-            <a href="" title="" class="cadastro-btn">Perfil</a>
-
-             <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+            <a href="cadastro.html" class="cadastro-btn">Cadastre-se Agora</a>
+            <a href="login.html" class="cadastro-btn">Login</a>
+            <a href="" class="cadastro-btn">Perfil</a>
             <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
-             <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
         </nav>
-         <!--FIM MENU DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
 
-       <!--INICIO CORPO DO MENU DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
         <div class="container">
-            <h1>Encontre Seu Serviços</h1>
-             <!--INICIO BUSCA DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-             <div class="busca-site">
+            <h1>Encontre Seu Serviço</h1>
+            <div class="busca-site">
                 <form action="" method="get" id="busca-menu">
-
                     <div class="local-input">
                         <label>Cidade</label>
-                        <input type="text" placeholder="Busque sua cidade "id="cidade-menu">
+                        <input type="text" placeholder="Busque sua cidade" id="cidade-menu">
                     </div>
                     <div>
                         <label>Serviços</label>
                         <input type="text" placeholder="Tipo de Serviço" id="servico-menu">
                     </div>
-
-                    <button type="submit"><img src="assets/img/busca.png" alt="categoria.html"></button>
-
+                    <button type="button" onclick="redirecionarParaCategoria()">
+                        <img src="assets/img/busca.png" alt="Ir para Categoria">
+                    </button>
                 </form>
-             </div>
-             <!--FIM BUSCA DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-        </div>
-         <!--FIM CORPO DO MENU DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
-    </div>
-     <!--FIM TOPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
-      <!--INICIO CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
-      <div class="lista-servico">
-        <!-- Coluna Esquerda para Listagem Dinâmica de Serviços -->
-        <div id="resultado-servicos" class="coluna-esquerda">
-            <p>200+ Opções</p>
-            <h1>Lista de Serviços</h1>
-            <!-- Conteúdo será adicionado via JavaScript -->
+            </div>
         </div>
     </div>
-      <div class="container">
+
+    <div class="container">
         <h2 class="sub-titulo">Serviços Indicado Por Procura Pro</h2>
-
-        <!--INICIO EXCLUSIVOS CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
         <div class="exclusivos">
-
-            <div>
-                <img src="assets/img/1.png" alt="">
-                <span>
-                    
-                </span>
-            </div>
-            
-            <div>
-                <img src="assets/img/2.png" alt="">
-                <span>
-                   
-                </span>
-            </div>
-
-            <div>
-                <img src="assets/img/3.png" alt="">
-                <span>
-                   
-                </span>
-            </div>
-
-            <div>
-                <img src="assets/img/4.png" alt="">
-                <span>
-                   
-                </span>
-            </div>
-
-            <div>
-                <img src="assets/img/5.png" alt="">
-                <span>
-                  
-                </span>
-            </div>
-
-            <div>
-                <img src="assets/img/6.png" alt="">
-                <span>
-                   
-                </span>
-            </div>
-            
-            
-                </span>
-            </div>
-        
+            <div><img src="assets/img/1.png" alt=""></div>
+            <div><img src="assets/img/2.png" alt=""></div>
+            <div><img src="assets/img/3.png" alt=""></div>
+            <div><img src="assets/img/4.png" alt=""></div>
+            <div><img src="assets/img/5.png" alt=""></div>
+            <div><img src="assets/img/6.png" alt=""></div>
         </div>
 
-        <!--FIM  EXCLUSIVOS CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
-
-        <!--INICIO LOCAIS MAIS ALUGADOS CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
         <h2 class="sub-titulo">Melhores Avaliados</h2>
-
         <div class="lacais-quentes">
-
-            <div>
-                <img src="assets/img/7.png" alt="">
-                <h3>Celso Marques</h3>
-            </div>
-
-            <div>
-                <img src="assets/img/1.png" alt="">
-                <h3>Felipe Di Sessa</h3>
-            </div>
-
-            <div>
-                <img src="assets/img/9.png" alt="">
-                <h3>Renata</h3>
-            </div>
-
-            
-            <div>
-                <img src="assets/img/10.png" alt="">
-                <h3>Eduarda</h3>
-            </div>
-
-
+            <div><img src="assets/img/7.png" alt=""><h3>Celso Marques</h3></div>
+            <div><img src="assets/img/1.png" alt=""><h3>Felipe Di Sessa</h3></div>
+            <div><img src="assets/img/9.png" alt=""><h3>Renata</h3></div>
+            <div><img src="assets/img/10.png" alt=""><h3>Eduarda</h3></div>
         </div>
-         <!--FIM LOCAIS MAIS ALUGADOS CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
 
+        <div class="cta">
+            <h3>Compartilhe <br>seus Serviços</h3>
+            <p>Grande oportunidade de ganhar dinheiro <br>a verdadeira forma de ser localizado</p>
+            <a href="saiba_mais.html" class="cta-btn">Saiba Mais</a>
+        </div>
 
-    <!--INICIO CHAMADA PARA AÇÃO CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-       <div class="cta">
-        <h3>Compartilhe <br>seus Serviços</h3>
-        <p>Grande oportunidade de ganhar dinheiro <br>a verdadeira forma de ser localizado</p>
-        <a href="saiba_mais.html" class="cta-btn">Saiba Mais</a>
-       </div>
-    <!--FIM CHAMADA PARA AÇÃO CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+        <h2 class="sub-titulo">Serviços Mais Procurados</h2>
+        <div class="stories">
+            <div><img src="assets/img/11.png" alt=""><p>Montado de Moveis Apenas R$ 777,77</p></div>
+            <div><img src="assets/img/12.png" alt=""><p>Encanador Apenas R$ 777,77</p></div>
+            <div><img src="assets/img/13.png" alt=""><p>Eletricista R$ 777,77</p></div>
+        </div>
 
+        <a href="" class="ganhar-btn">Seja um Pro</a>
 
-     <!-- INICIO STORIES CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-     <h2 class="sub-titulo">Serviçoes Mais procurados</h2>
-      <div class="stories">
-
-      <div>
-        <img src="assets/img/11.png" alt="">
-        <p>Montado de Moveis Apenas R$ 777,77</p>
-      </div>
-
-      <div>
-        <img src="assets/img/12.png" alt="">
-        <p>Encanador Apenas R$ 777,77</p>
-      </div>
-
-
-      <div>
-        <img src="assets/img/13.png" alt="">
-        <p>Eletricista R$ 777,77</p>
-      </div>
-
-      
+        <div class="sobre-nos">
+            <h2>Sobre nós</h2>
+            <p>Em um mercado de trabalho em constante crescimento e com o avanço da tecnologia, o ProcuraPro se destaca como uma ferramenta essencial, proporcionando conveniência, eficiência e praticidade na busca e oferta de serviços gerais. Ao unir oferta e demanda de forma eficaz, o aplicativo visa superar os obstáculos enfrentados pelos profissionais autônomos e oferecer soluções para as necessidades dos clientes, promovendo, assim, o desenvolvimento econômico e social da comunidade.</p>
+        </div>
     </div>
-     <!-- FIM STORIES CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
 
-
-     <!-- BOTÃO GANHAR DINHEIRO CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-     <a href="" class="ganhar-btn">Seja um Pro</a>
-     <!-- FIM BOTÃO GANHAR DINHEIRO CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
-
-     <!-- INICIO SOBRE NOS CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-     <div class="sobre-nos">
-        <h2>Sobre nós</h2>
-        <p>Em um mercado de trabalho em constante crescimento e com o avanço da tecnologia, o ProcuraPro se destaca como uma ferramenta essencial, proporcionando conveniência, eficiência e praticidade na busca e oferta de serviços gerais. Ao unir oferta e demanda de forma eficaz, o aplicativo visa superar os obstáculos enfrentados pelos profissionais autônomos e oferecer soluções para as necessidades dos clientes, promovendo, assim, o desenvolvimento econômico e social da comunidade.</p>
-     </div>
-     <!-- FIM SOBRE NOS DINHEIRO CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-
-
-     <footer class="rodape"> 
+    <footer class="rodape"> 
         <a href=""><ion-icon name="logo-facebook"></ion-icon></a>
         <a href=""><ion-icon name="logo-instagram"></ion-icon></a>
         <a href=""><ion-icon name="logo-linkedin"></ion-icon></a>
         <a href=""><ion-icon name="logo-youtube"></ion-icon></a>
         <hr>
-     <p>Todos os direitos reservados á ProcuraPro</p>
-     </footer>
+        <p>Todos os direitos reservados à ProcuraPro</p>
+    </footer>
 
+    <!-- JavaScript para redirecionamento com parâmetros de busca -->
+    <script>
+        function redirecionarParaCategoria() {
+            const cidade = document.getElementById('cidade-menu').value;
+            const servico = document.getElementById('servico-menu').value;
+            const url = `categoria.html?cidade=${encodeURIComponent(cidade)}&servico=${encodeURIComponent(servico)}`;
+            window.location.href = url;
+        }
+    </script>
 
-      </div>
-
-      <div class="lista-servico">
-    <!-- Coluna Esquerda para Listagem Dinâmica de Serviços -->
-    
-</div>
-
-
-      <!--FIM CORPO DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-      <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-      <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-      <script src="assets/js/app.js"></script>
-      <script src="assets/js/index.js"></script>
-      <script src="assets/js/consultaindex.js"></script>
+    <!-- Scripts adicionais -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script src="assets/js/index.js"></script>
+    <script src="assets/js/consultaindex.js"></script>
 </body>
 </html>

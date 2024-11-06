@@ -5,6 +5,7 @@
     font-family: 'poppins', sans-serif;
     text-decoration: none;
 
+
 }
 
 :root{
@@ -36,7 +37,7 @@ nav{
     margin-left:1px;
     align-items: center;
     padding: 20px 7%;
-    
+    background-color: #0000002a;
 }
 
 nav .menu-outline{
@@ -791,6 +792,30 @@ nav .menu-outline{
   margin: 20px 0 50px;
 }
 
+textarea {
+    background: #f1f5f9; /* Cor de fundo suave */
+    border: 1px solid #a2a7b1; /* Borda com tom sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 12px;
+    font-size: 16px;
+    color: #333;
+    width: 100%;
+    min-height: 150px; /* Altura mínima para o textarea */
+    resize: vertical; /* Permite apenas redimensionar verticalmente */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+textarea:focus {
+    border-color: #456bb2; /* Cor de foco */
+    box-shadow: 0 0 8px rgba(69, 107, 178, 0.5); /* Sombra mais intensa ao focar */
+    background-color: #ffffff; /* Fundo branco ao focar */
+}
+
+
 .orcamento{
    display:flex;
    flex-wrap:wrap ; 
@@ -807,11 +832,26 @@ nav .menu-outline{
 .orcamento div{
     padding: 20px;
 }
-.orcamento input{
-    border:0 ;
-    outline:none;
-    background: transparent;
+.orcamento input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: #333;
+    background-color: #f1f5f9; /* Fundo claro */
+    border: 1px solid #a2a7b1; /* Borda sutil */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
+    margin: 5px;
 }
+
+.orcamento input:focus {
+    border-color: #456bb2; /* Cor da borda ao focar */
+    background-color: #ffffff; /* Fundo branco ao focar */
+    box-shadow: 0 0 8px rgba(69, 107, 178, 0.2); /* Sombra de foco */
+}
+
 .orcamento button{
     width:300px;
     font-size:16px ;
@@ -821,6 +861,7 @@ nav .menu-outline{
     border-radius: 8px;
     color: var(--cor-padrao-fonte);
     padding: 18px;
+    margin: 10px;
 }
 
 .orcamento button:hover{
@@ -895,13 +936,17 @@ margin-bottom: 30px;
 .perfil p{
     margin-top: 5px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     color: var(--cor-texto-secundario);
 }
 
 .perfil ion-icon {
 color: var(--cor-hover-btn);
-padding:5px;
+padding:1px;
+flex-direction: row !important;
+display: flex !important;
+
+
 }
 
 .contato {

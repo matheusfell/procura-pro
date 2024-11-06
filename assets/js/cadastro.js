@@ -12,55 +12,55 @@ document.getElementById('formCadastro').addEventListener('submit', async functio
     const rua = document.getElementById('rua').value.trim();
     const numero = document.getElementById('numero').value.trim();
 
-    // Verificação simples para garantir que os campos não estão vazios
+    // Verificação para garantir que os campos obrigatórios estão preenchidos
     if (!nome || !email || !senha || !telefone || !cpf || !cidade || !estado || !rua || !numero) {
         alert('Por favor, preencha todos os campos!');
         return;
     }
 
-    // Criar o objeto JSON para envio
+    // Cria o objeto JSON para envio
     const dados = {
-        nome: nome,
-        email: email,
-        senha: senha,
-        telefone: telefone,
-        cpf: cpf,
-        cidade: cidade,
+        nome,
+        email,
+        senha,
+        telefone,
+        cpf,
+        cidade,
         uf: estado,
-        rua: rua,
-        numero: numero
+        rua,
+        numero
     };
 
-    console.log(dados); // Para depuração
+    console.log(dados); // Log para depuração
 
-    // Enviar os dados via fetch API para o endpoint /ws/registrar
     try {
+        // Envia os dados para o endpoint /ws/registrar
         const response = await fetch('http://localhost:8000/ws/registrar', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(dados) // Enviar os dados no corpo da requisição
+            body: JSON.stringify(dados) // Dados do formulário
         });
 
-        // Verifica se a resposta foi bem-sucedida
+        // Verifica se a resposta foi bem-sucedida (status 2xx)
         if (response.ok) {
             const result = await response.json();
             console.log('Resposta do servidor:', result);
             alert('Cadastro bem-sucedido!');
             window.location.href = 'index.html';
         } else {
-            // Tenta ler a resposta como JSON primeiro
+            // Tenta ler a resposta de erro como JSON primeiro
             let errorResult;
             try {
                 errorResult = await response.json();
             } catch {
                 errorResult = await response.text();
             }
-
+            
             console.error('Erro ao registrar usuário:', errorResult);
-            alert(`Informaçao ja cadastrada: ${errorResult }`);
+            alert(`Informação já cadastrada ou dados inválidos: ${errorResult}`);
         }
     } catch (error) {
         console.error('Erro ao enviar a requisição:', error);

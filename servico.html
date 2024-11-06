@@ -47,21 +47,38 @@
             return urlParams.get('id');
         }
 
+        // Função para gerar um número aleatório de visitas entre 554 e 759
+        function gerarVisitasAleatorias() {
+            return Math.floor(Math.random() * (759 - 554 + 1)) + 554;
+        }
+
         // Função para exibir os detalhes do serviço
         function exibirDetalhesServico(servico) {
-            console.log(servico);
+            const visitasAleatorias = gerarVisitasAleatorias();
             const detalhesServico = document.getElementById('detalhes-servico');
             detalhesServico.innerHTML = `
                 <div class="servico-titulo">
                     <h1>${servico.nome || 'Serviço'}</h1>
                     <div class="linha">
+<p>
+    ${(() => {
+        const maxEstrelas = 5;
+        const nota = Math.min(servico.nota || 0, maxEstrelas); // Limita a nota a 5 estrelas
+        const estrelasInteiras = Math.floor(nota);
+        const estrelaFracionada = nota % 1 !== 0;
+        return (
+            '<ion-icon name="star"></ion-icon>'.repeat(estrelasInteiras) + 
+            (estrelaFracionada ? '<ion-icon name="star-half"></ion-icon>' : '') + 
+            '<ion-icon name="star-outline"></ion-icon>'.repeat(maxEstrelas - estrelasInteiras - (estrelaFracionada ? 1 : 0))
+        );
+    })()}
+    &nbsp; &nbsp; ${servico.quantidadeAvaliacoes || 0} Avaliações
+    &nbsp; &nbsp; Taxa de resposta 100%
+    &nbsp; &nbsp; Responde Rápido
+</p>
+
                         <div>
-                            ${'<ion-icon name="star"></ion-icon>'.repeat(servico.avaliacao || 4)}
-                            ${(servico.avaliacao % 1 !== 0) ? '<ion-icon name="star-half"></ion-icon>' : ''}
-                            <span>${servico.visitas || 777} visitas .</span>
-                        </div>
-                        <div>
-                            <p>Localização: ${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</p>
+                            <p> ---Localização: ${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</p>
                         </div>
                     </div>
                 </div>
@@ -76,7 +93,7 @@
                 <div class="pequenos-detalhes">
                     <h2>Entre em contato com ${servico.usuario_nome || 'Nome do Prestador'}</h2>
                     <p>${servico.descricao || 'Descrição do serviço'}</p>
-                    <h4> R$ ${servico.valor || 'Valor não especificado'} / dia</h4>
+                    <h4>  ${servico.valor || 'Valor não especificado'} / dia</h4>
                 </div>
                 <hr class="linha-hr">
 
@@ -116,16 +133,32 @@
                         <img src="assets/img/59170.png"  alt="" class="perfil-img">
                         <h2>Prestador: ${servico.prestador || servico.usuario_nome }</h2>
                     </div>
-                    <p>
-                        ${'<ion-icon name="star"></ion-icon>'.repeat(servico.avaliacao || 4)}
-                        ${(servico.avaliacao % 1 !== 0) ? '<ion-icon name="star-half"></ion-icon>' : ''} 
-                        &nbsp; &nbsp; ${servico.avaliacoes || 777} Avaliações
-                        &nbsp; &nbsp; Taxa de resposta 100%
-                        &nbsp; &nbsp; Responde Rápido
-                    </p>
+<p>
+    ${(() => {
+        const maxEstrelas = 5;
+        const nota = Math.min(servico.nota || 0, maxEstrelas); // Limita a nota a 5 estrelas
+        const estrelasInteiras = Math.floor(nota);
+        const estrelaFracionada = nota % 1 !== 0;
+        return (
+            '<ion-icon name="star"></ion-icon>'.repeat(estrelasInteiras) + 
+            (estrelaFracionada ? '<ion-icon name="star-half"></ion-icon>' : '') + 
+            '<ion-icon name="star-outline"></ion-icon>'.repeat(maxEstrelas - estrelasInteiras - (estrelaFracionada ? 1 : 0))
+        );
+    })()}
+    &nbsp; &nbsp; ${servico.quantidadeAvaliacoes || 0} Avaliações
+    &nbsp; &nbsp; Taxa de resposta 100%
+    &nbsp; &nbsp; Responde Rápido
+</p>
+
+                    
                     <a href="https://wa.me/55${servico.usuario_telefone}" class="contato" target="_blank">Fale Comigo</a>
                 </div>
             `;
+            
+            // Atualiza o número de visitas a cada 5 minutos
+            setInterval(() => {
+                document.getElementById('visitas').textContent = `${gerarVisitasAleatorias()} visitas .`;
+            }, 300000); // 300000 ms = 5 minutos
         }
 
         // Função para buscar os detalhes do serviço na API

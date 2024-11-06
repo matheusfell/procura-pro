@@ -8,12 +8,12 @@
 
 body {
     background-color: #f4f4f9;
-    color: #000000;
+    color: #333;
     line-height: 1.6;
 }
 
 /* ESTILOS DO MENU */
-nav.nav-procurapro {
+nav#navBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -21,44 +21,45 @@ nav.nav-procurapro {
     background-color: #04164e;
 }
 
-nav.nav-procurapro .logo {
+nav#navBar .logo {
     width: 150px;
 }
 
-nav.nav-procurapro ul {
+nav#navBar ul {
     display: flex;
     list-style: none;
 }
 
-nav.nav-procurapro ul li {
+nav#navBar ul li {
     margin: 0 15px;
 }
 
-nav.nav-procurapro ul li a {
-    color: #fff;
+nav#navBar ul li a {
+    color: #ffffff;
     text-decoration: none;
     font-size: 16px;
     transition: color 0.3s ease;
 }
 
-nav.nav-procurapro ul li a:hover,
-nav.nav-procurapro ul li a.active {
-    color: #0c1f3b;
+nav#navBar ul li a:hover,
+nav#navBar ul li a.active {
+    color: #b3c6ff;
 }
 
 .cadastro-btn {
     background-color: #f3f3f3;
-    color: #567EBB;
+    color: #04164e;
     padding: 10px 20px;
     border-radius: 25px;
     text-decoration: none;
     margin-left: 15px;
     font-size: 14px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .cadastro-btn:hover {
-    background-color: #B5B9BE;
+    background-color: #d9d9d9;
+    color: #333;
 }
 
 /* ESTILOS DA SEÇÃO DE BENEFÍCIOS */
@@ -70,13 +71,13 @@ nav.nav-procurapro ul li a.active {
 
 .beneficios-container h1 {
     font-size: 2.5rem;
-    color: #567EBB;
+    color: #04164e;
     margin-bottom: 40px;
 }
 
 .beneficios-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
     align-items: start;
 }
@@ -95,7 +96,7 @@ nav.nav-procurapro ul li a.active {
 
 .beneficio-icon {
     font-size: 3rem;
-    color: #567EBB;
+    color: #04164e;
     margin-bottom: 20px;
 }
 
@@ -120,7 +121,7 @@ nav.nav-procurapro ul li a.active {
 
 /* RODAPÉ */
 footer.footer-procurapro {
-    background-color: #567EBB;
+    background-color: #04164e;
     color: #fff;
     text-align: center;
     padding: 20px 0;
@@ -133,14 +134,15 @@ footer.footer-procurapro p {
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
-    nav.nav-procurapro ul {
+    nav#navBar ul {
         display: none;
     }
 
-    nav.nav-procurapro .menu-outline {
+    nav#navBar .menu-outline {
         display: block;
         font-size: 2rem;
-        color: #fff;
+        color: #ffffff;
+        cursor: pointer;
     }
 
     .beneficios-container {
