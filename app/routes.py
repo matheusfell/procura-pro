@@ -247,3 +247,65 @@ async def inserir_avaliacao(avaliacao: Avaliacao, db = Depends(get_db)):
     cursor.close()
     
     return avaliacao
+
+
+UPLOAD_FOLDER = "assets/img/img_banco"
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Rota para listar serviços do usuário logado com opções de edição e exclusão
+@router.get("/ws/meusServicos/{usuario_id}")
+async def listar_meus_servicos(usuario_id: int, db=Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("""
+        SELECT servico_id, descricao, valor, cidade, uf, imagem
+        FROM servico
+        WHERE usuario_id = %s
+    """, (usuario_id,))
+    servicos = cursor.fetchall()
+    cursor.close()
+
+    servicos_list = []
+    for servico in servicos:
+        servicos_list.append({
+            "servico_id": servico[0],
+            "descricao": servico[1],
+            "valor": servico[2],
+            "cidade": servico[3],
+            "uf": servico[4],
+            "imagem": f"http://localhost:8000{servico[5]}" if servico[5] else "/assets/img/default.png"
+        })
+
+    return {"servicos": servicos_list}
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Rota para editar um serviço
+@router.put("/ws/editarServico/{servico_id}")
+async def editar_servico(servico_id: int, descricao: str = Form(...), valor: float = Form(...), db=Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("""
+        UPDATE servico
+        SET descricao = %s, valor = %s
+        WHERE servico_id = %s
+    """, (descricao, valor, servico_id))
+    db.commit()
+    cursor.close()
+
+    return {"message": "Serviço atualizado com sucesso"}
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Rota para excluir um serviço
+@router.delete("/ws/excluirServico/{servico_id}")
+async def excluir_servico(servico_id: int, db=Depends(get_db)):
+    cursor = db.cursor()
+    cursor.execute("DELETE FROM servico WHERE servico_id = %s", (servico_id,))
+    db.commit()
+    cursor.close()
+
+    return {"message": "Serviço excluído com sucesso"}
+
+# ---------------------------------------------------------------------------------------------------------------------------------------------------------#
+

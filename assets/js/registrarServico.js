@@ -32,8 +32,9 @@ document.getElementById('serviceForm').addEventListener('submit', async function
         const response = await fetch('http://localhost:8000/ws/registrarServico', {
             method: 'POST',
             body: formData // Envia o FormData diretamente no corpo da requisição
+            
         });
-
+        console.log(response)
         // Verifica se a resposta foi bem-sucedida
         if (response.ok) {
             const result = await response.json();

@@ -1,76 +1,383 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Procura Pro</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Serviços</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+  <link rel="icon" href="/assets/img/logo.png" type="image/png">
+
+  <style>
+    /* Paleta de cores */
+    :root {
+      --cor-padrao-fonte: #ffffff;
+      --cor-link-topo: #ffffff;
+      --cor-font-preto: #000000;
+      --cor-botao-pesquisa-top: #007bff;
+      --cor-hover-btn: #0056b3;
+      --cor-fonte-sub-titulo: #444444;
+      --cor-hover-ganhar-dinheiro: #0056b3;
+      --cor-topo-celular: #00263b;
+      --borda-busca-radape-celular: #007bff;
+      --cor-info-servico: #007bff;
+      --borda-lateral-direita: #007bff;
+    }
+  
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f0f2f5;
+      color: var(--cor-fonte-sub-titulo);
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+  
+    /* Barra de navegação */
+    #navBar {
+      width: 100%;
+      background-color: var(--cor-topo-celular);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 30px;
+    }
+  
+    #navBar .logo {
+      width: 120px;
+    }
+  
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+  
+    .nav-links a,
+    .cadastro-btn {
+      color: var(--cor-link-topo);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      border-radius: 20px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .nav-links a:hover,
+    .nav-links a.active,
+    .cadastro-btn:hover {
+      background-color: var(--cor-hover-btn);
+    }
+  
+    .container {
+      max-width: 1000px;
+      width: 90%;
+      margin-top: 20px;
+      padding: 30px;
+      background-color: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+  
+    h1 {
+      font-size: 28px;
+      color: var(--cor-info-servico);
+      text-align: center;
+      margin-bottom: 20px;
+    }
+  
+    /* Tabela */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+  
+    th {
+      background-color: var(--cor-info-servico);
+      color: var(--cor-padrao-fonte);
+      font-weight: bold;
+    }
+  
+    td img {
+      border-radius: 8px;
+      width: 60px;
+    }
+  
+    /* Botões */
+    button {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 20px;
+      color: var(--cor-padrao-fonte);
+      background-color: var(--cor-botao-pesquisa-top);
+      transition: background-color 0.3s ease;
+    }
+  
+    button:hover {
+      background-color: var(--cor-hover-btn);
+    }
+  
+    /* Modal */
+    .modal.hidden {
+      display: none;
+    }
+  
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .modal-content {
+      background-color: #ffffff;
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+  
+    .close-button {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      font-size: 24px;
+      color: var(--cor-info-servico);
+      cursor: pointer;
+    }
+  
+    .close-button:hover {
+      color: var(--cor-hover-ganhar-dinheiro);
+    }
+  
+    /* Formulário */
+    label {
+      display: block;
+      margin: 10px 0 5px;
+      color: var(--cor-fonte-sub-titulo);
+    }
+  
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+  
+    .modal-content button[type="submit"] {
+      width: 100%;
+      font-size: 16px;
+    }
+  </style>
+  
 </head>
 <body>
-    <!-- Header com o menu do site -->
-    <header class="destaque">
-        <nav id="navBar">
-            <a href="index.html">  <img src="assets/img/logo.png" alt="" class="logo"></a>
-            <ul class="nav-links">
-                <li><a href="categoria.html" title="" class="active">Serviços Populares</a></li>
-                <li><a href="categoria.html" title=""> Seja um Prestador</a></li>
-                <li><a href="categoria.html" title="">Ver Pacotes</a></li>
-            </ul>
-            <a href="cadastro.html" title="" class="cadastro-btn">Cadastre-se Agora</a>
-            <a href="login.html" title="" class="cadastro-btn">Login</a>
-            <a href="" title="" class="cadastro-btn">Perfil</a>
 
-             <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
-            <ion-icon name="menu-outline" class="menu-outline" onclick="menucelular()"></ion-icon>
-             <!--MENU CELULAR DO SITE MSFLIX.COM.BR E MAKONSILVEIRA.COM.BR-->
+  <!-- Barra de navegação -->
+  <nav id="navBar">
+    <a href="index.html"><img src="assets/img/logo.png" alt="" class="logo"></a>
+    <ul class="nav-links">
+      <li><a href="categoria.html" class="active">Serviços Populares</a></li>
+      <li><a href="saiba_mais.html">Benefício</a></li>
+    </ul>
+    <a href="cadastro.html" class="cadastro-btn">Cadastre-se Agora</a>
+    <a href="login.html" class="cadastro-btn">Login</a>
+    <a href="perfil.html" class="cadastro-btn">Perfil</a>
+  </nav>
 
-        </nav>
-    </header>
+  <div class="container">
+    <h1>Meus Serviços</h1>
+    <div id="error-container" class="error-message"></div>
+    <table id="servicos-table">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Valor</th>
+          <th>Cidade</th>
+          <th>UF</th>
+          <th>Imagem</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="servicos-list">
+        <!-- Os serviços serão listados aqui dinamicamente -->
+      </tbody>
+    </table>
+  </div>
 
-    <!-- Seção para exibir serviços do usuário -->
-    <section id="user-services">
-        <h2>Meus Serviços</h2>
-        <div id="services-list"></div>
-    </section>
+  <!-- Modal para Edição -->
+  <div id="edit-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close-button" onclick="closeModal()">×</span>
+      <h2>Editar Serviço</h2>
+      <form id="edit-form">
+        <label>Descrição:</label>
+        <input type="text" id="edit-descricao" required>
+        <label>Valor:</label>
+        <input type="number" id="edit-valor" required>
+        <button type="submit">Salvar</button>
+      </form>
+    </div>
+  </div>
 
-    <script src="assets/js/app.js"></script>
-    <script src="assets/js/index.js"></script>
-    <script>document.addEventListener("DOMContentLoaded", function () {
-        const userId = 123;  // Exemplo de ID do usuário logado
-        const servicesList = document.getElementById("services-list");
-    
-        // Função para buscar serviços do usuário logado
-        async function fetchUserServices() {
-            try {
-                const response = await fetch(`/ws/buscarServico/${userId}`);
-                if (!response.ok) throw new Error("Erro ao buscar os serviços");
-    
-                const services = await response.json();
-                displayServices(services);
-            } catch (error) {
-                console.error("Erro:", error);
-                servicesList.innerHTML = "<p>Erro ao carregar os serviços.</p>";
-            }
+  <script>
+    // Função para obter o valor do cookie
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+    window.onload = function() {
+      const userName = getCookie('userName');
+      const userId = getCookie('userId');
+
+      const perfilBtn = document.querySelector('.cadastro-btn[href="perfil.html"]');
+      const loginBtn = document.querySelector('.cadastro-btn[href="login.html"]');
+      const cadastroBtn = document.querySelector('.cadastro-btn[href="cadastro.html"]');
+
+      if (userName) {
+        perfilBtn.textContent = `Olá, ${userName}`;
+        perfilBtn.href = 'perfil.html';
+        loginBtn.style.display = 'none';
+        cadastroBtn.style.display = 'none';
+      } else {
+        perfilBtn.textContent = 'Perfil';
+        perfilBtn.href = 'login.html';
+        loginBtn.style.display = 'inline';
+        cadastroBtn.style.display = 'inline';
+      }
+
+      if (userId) {
+        loadServices(userId);
+      } else {
+        displayError("Você precisa estar logado para visualizar seus serviços.");
+      }
+    };
+
+    function displayError(message) {
+      const errorContainer = document.getElementById("error-container");
+      errorContainer.textContent = message;
+    }
+
+    async function loadServices(userId) {
+      try {
+        const response = await fetch(`http://localhost:8000/ws/meusServicos/${userId}`);
+        if (!response.ok) {
+          displayError("Erro ao carregar serviços. Verifique se o backend está ativo.");
+          return;
         }
-    
-        // Função para exibir serviços
-        function displayServices(services) {
-            servicesList.innerHTML = "";  // Limpa a lista de serviços
-            services.forEach(service => {
-                const serviceCard = document.createElement("div");
-                serviceCard.classList.add("service-card");
-                serviceCard.innerHTML = `
-                    <h3>${service.nome}</h3>
-                    <p>${service.descricao}</p>
-                    <p><strong>Preço:</strong> R$${service.preco}</p>
-                `;
-                servicesList.appendChild(serviceCard);
-            });
+
+        const data = await response.json();
+        const servicosList = document.getElementById("servicos-list");
+        servicosList.innerHTML = "";
+
+        data.servicos.forEach(servico => {
+          const row = document.createElement("tr");
+
+          row.innerHTML = `
+            <td>${servico.descricao}</td>
+            <td>${servico.valor}</td>
+            <td>${servico.cidade}</td>
+            <td>${servico.uf}</td>
+            <td><img src="${servico.imagem}" alt="Imagem do Serviço" width="50"></td>
+            <td>
+              <button class="edit-button" data-id="${servico.servico_id}" data-descricao="${servico.descricao}" data-valor="${servico.valor}">Editar</button>
+              <button onclick="deleteService(${servico.servico_id})">Excluir</button>
+            </td>
+          `;
+          servicosList.appendChild(row);
+        });
+
+        document.querySelectorAll('.edit-button').forEach(button => {
+          button.addEventListener('click', (event) => {
+            const servicoId = event.target.getAttribute('data-id');
+            const descricao = event.target.getAttribute('data-descricao');
+            const valor = event.target.getAttribute('data-valor');
+            openEditModal(servicoId, descricao, valor);
+          });
+        });
+      } catch (error) {
+        displayError("Erro inesperado ao carregar serviços.");
+        console.error('Erro:', error);
+      }
+    }
+
+    function openEditModal(servicoId, descricao, valor) {
+      document.getElementById("edit-descricao").value = descricao;
+      document.getElementById("edit-valor").value = valor;
+      document.getElementById("edit-modal").classList.remove("hidden");
+
+      document.getElementById("edit-form").onsubmit = function(event) {
+        event.preventDefault();
+        editService(servicoId);
+      };
+    }
+
+    function closeModal() {
+      document.getElementById("edit-modal").classList.add("hidden");
+    }
+
+    async function editService(servicoId) {
+      const descricao = document.getElementById("edit-descricao").value;
+      const valor = document.getElementById("edit-valor").value;
+
+      const formData = new FormData();
+      formData.append("descricao", descricao);
+      formData.append("valor", valor);
+
+      try {
+        const response = await fetch(`http://localhost:8000/ws/editarServico/${servicoId}`, {
+          method: "PUT",
+          body: formData
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          displayError("Erro ao atualizar o serviço. Detalhes: " + errorData.detail);
+          return;
         }
-    
-        // Chamada da função ao carregar a página
-        fetchUserServices();
-    });
-    </script>
+
+        closeModal();
+        loadServices(getCookie('userId'));
+      } catch (error) {
+        displayError("Erro inesperado ao atualizar o serviço.");
+        console.error('Erro:', error);
+      }
+    }
+
+    async function deleteService(servicoId) {
+      try {
+        const response = await fetch(`http://localhost:8000/ws/excluirServico/${servicoId}`, { method: "DELETE" });
+
+        if (!response.ok) {
+          displayError("Erro ao excluir o serviço. Verifique se o backend está ativo e o ID está correto.");
+          return;
+        }
+
+        loadServices(getCookie('userId'));
+      } catch (error) {
+        displayError("Erro inesperado ao excluir o serviço.");
+        console.error('Erro:', error);
+      }
+    }
+  </script>
 </body>
 </html>
