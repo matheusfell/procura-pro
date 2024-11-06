@@ -14,25 +14,36 @@ os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
 @router.post("/ws/registrar", response_model=UsuarioLogado)
-async def registar(user: UsuarioCriar, db=Depends(get_db)):
+async def registrar(user: UsuarioCriar, db=Depends(get_db)):
     cursor = db.cursor()
 
-    cursor.execute("SELECT usuario_id from usuario where email = %s", (user.email,))
+    # Verificar se o email já está cadastrado
+    cursor.execute("SELECT usuario_id FROM usuario WHERE email = %s", (user.email,))
     if cursor.fetchone():
         raise HTTPException(status_code=400, detail="Email já cadastrado")
-    
+
+    # Gerar o hash da senha
     senha_hash = get_password_hash(user.senha)
 
+    # Inserir novo usuário no banco de dados
     cursor.execute(
-        "INSERT INTO usuario(nome, senha, telefone, email, cpf, cidade, uf, rua, numero_casa) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING usuario_id",
+        "INSERT INTO usuario(nome, senha, telefone, email, cpf, cidade, uf, rua, numero_casa) "
+        "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s) RETURNING usuario_id",
         (user.nome, senha_hash, user.telefone, user.email, user.cpf, user.cidade, user.uf, user.rua, user.numero)
     )
     
-    usuarioID = cursor.fetchone()[0]
+    usuario_id = cursor.fetchone()[0]
     db.commit()
     cursor.close()
 
-    return {"usuario_id": usuarioID, "nome": user.nome, "email": user.email}
+    # Retorna os dados do usuário logado conforme esperado pelo modelo `UsuarioLogado`
+    return UsuarioLogado(
+        usuario_id=usuario_id,
+        nome=user.nome,
+        email=user.email,
+        cidade=user.cidade,
+        uf=user.uf
+    )
 
 #---------------------------------------------------------------------------------------------------------------------------------------------------------------#
 

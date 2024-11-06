@@ -77,6 +77,7 @@
     &nbsp; &nbsp; Responde Rápido
 </p>
 
+
                         <div>
                             <p> ---Localização: ${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</p>
                         </div>
@@ -116,21 +117,24 @@
 
                 <hr class="linha-hr">
 
-                <div class="mapa">
-                    <h3>Região de Atuação</h3>
-                    <iframe
-                        src="https://www.google.com/maps/place/${servico.cidade},+${servico.uf}"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    <b>${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</b>
-                    <p>Região de atuação do profissional</p>
-                </div>
+  <div class="mapa">
+    <h3>Região de Atuação</h3>
+    <iframe
+        src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD8TqLHoD-ZdeTjD7WKGoWWr0yoIrdQhjM&q=${encodeURIComponent(servico.cidade)},+${encodeURIComponent(servico.uf)}"
+        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+    <b>${servico.cidade || 'Cidade'} - ${servico.uf || 'UF'}</b>
+    <p>Região de atuação do profissional</p>
+</div>
+
+
 
                 <hr class="linha-hr">
 
                 <div class="perfil">
                     <div class="perfil-info">
-                        <img src="assets/img/59170.png"  alt="" class="perfil-img">
+                        <img src="assets/img/pefil do prestador.png"  alt="" class="perfil-img">
                         <h2>Prestador: ${servico.prestador || servico.usuario_nome }</h2>
                     </div>
 <p>
@@ -189,8 +193,141 @@
 
         // Carrega os detalhes do serviço ao abrir a página
         buscarDetalhesServico();
+
+
+        
     </script>
     <script src="assets/js/index.js"></script>
+    <script>
+        // Função para configurar a avaliação ao clicar nas estrelas
+        function configurarAvaliacao(servicoId, usuarioId) {
+            const estrelas = document.querySelectorAll('.linha ion-icon'); // Seletor para as estrelas
+    
+            estrelas.forEach((estrela, index) => {
+                estrela.addEventListener('click', async () => {
+                    const nota = index + 1; // Define a nota com base na estrela clicada
+    
+                    // Envia a avaliação para o backend
+                    const sucesso = await enviarAvaliacao(servicoId, usuarioId, nota);
+    
+                    if (sucesso) {
+                        alert('Serviço avaliado com sucesso!');
+                        const utilizouServico = confirm('Você já utilizou esse serviço?');
+                        await enviarUsoServico(servicoId, usuarioId, utilizouServico);
+                    }
+                });
+            });
+        }
+    
+        // Função para enviar a avaliação para o backend
+        async function enviarAvaliacao(servicoId, usuarioId, nota) {
+            try {
+                const response = await fetch('http://localhost:8000/ws/avaliarServico', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        servico_id: servicoId,
+                        usuario_id: usuarioId,
+                        nota: nota
+                    })
+                });
+    
+                return response.ok;
+            } catch (error) {
+                console.error('Erro ao enviar avaliação:', error);
+                return false;
+            }
+        }
+    
+        // Função para enviar a informação de uso do serviço
+        async function enviarUsoServico(servicoId, usuarioId, utilizouServico) {
+            try {
+                const response = await fetch('http://localhost:8000/ws/utilizouServico', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        servico_id: servicoId,
+                        usuario_id: usuarioId,
+                        utilizou: utilizouServico
+                    })
+                });
+    
+                if (!response.ok) {
+                    console.error('Erro ao enviar informação de uso do serviço:', response.status);
+                }
+            } catch (error) {
+                console.error('Erro ao enviar informação de uso do serviço:', error);
+            }
+        }
+    
+        // Carrega a função de configuração de avaliação ao carregar os detalhes do serviço
+        async function buscarDetalhesServico() {
+            const servicoId = getServicoIdFromUrl();
+            const url = `http://localhost:8000/ws/buscarServico/${servicoId}`;
+    
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    }
+                });
+    
+                if (response.ok) {
+                    const servico = await response.json();
+                    exibirDetalhesServico(servico);
+                    configurarAvaliacao(servico.id, servico.usuario_id); // Configura a funcionalidade de avaliação
+                } else {
+                    console.error('Erro ao obter os detalhes do serviço:', response.status);
+                    document.getElementById('detalhes-servico').innerHTML = '<p>Erro ao carregar o serviço.</p>';
+                }
+            } catch (error) {
+                console.error('Erro ao buscar detalhes do serviço:', error);
+            }
+        }
+    
+        // Carrega os detalhes do serviço ao abrir a página
+        buscarDetalhesServico();
+    </script>
+
+<script>
+    function configurarAvaliacao(servicoId, usuarioId) {
+        const estrelas = document.querySelectorAll('.linha ion-icon');
+
+        estrelas.forEach((estrela, index) => {
+            estrela.classList.add('star'); // Adiciona a classe de cursor de clique
+
+            estrela.addEventListener('click', async () => {
+                const nota = index + 1;
+
+                // Adiciona a classe de "pulo" para animação
+                estrela.classList.add('pular');
+
+                // Remove a classe "pular" após 200ms para resetar a animação
+                setTimeout(() => estrela.classList.remove('pular'), 200);
+
+                const sucesso = await enviarAvaliacao(servicoId, usuarioId, nota);
+
+                if (sucesso) {
+                    alert('Serviço avaliado com sucesso!');
+                    const utilizouServico = confirm('Você já utilizou esse serviço?');
+                    await enviarUsoServico(servicoId, usuarioId, utilizouServico);
+                }
+            });
+        });
+    }
+</script>
+
+    
+
+    
 
 </body>
 </html>
